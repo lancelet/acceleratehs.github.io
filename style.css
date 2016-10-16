@@ -4,6 +4,11 @@
   background: #1F1528;
 }
 
+body {
+  padding-top: 50px;              /* leave space for fixed navbar */
+
+}
+
 footer {
   color: white;
   background: #222222;
