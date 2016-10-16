@@ -24,3 +24,8 @@ footer a:hover {
   color: white;
 }
 
+/* missing from bootstrap-3.7 */
+.embed-responsive-1by1 {
+  padding-bottom: 100%;
+}
+

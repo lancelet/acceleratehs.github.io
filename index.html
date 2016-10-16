@@ -48,8 +48,8 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="https://github.com/AccelerateHS/accelerate"><i class="fa fa-github fa-lg"></i></a></li>
-          <li><a href="http://groups.google.com/group/accelerate-haskell"><i class="fa fa-envelope-o fa-lg"></i></a></li>
+          <li><a href="https://github.com/AccelerateHS/accelerate"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+          <li><a href="http://groups.google.com/group/accelerate-haskell"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i></a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -83,13 +83,15 @@
           </p>
         </div>
         <div class="col-md-5">
-          <!-- <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image"> -->
           <div class="embed-responsive embed-responsive-4by3">
             <!-- <iframe class="embed-responsive-item" src="media/ray.mp4"></iframe> -->
             <video controls loop class="embed-responsive-item">
               <source src="media/ray.mp4" type="video/mp4">
             </video>
           </div>
+          <p class="text-center text-muted">
+            Interactive, real-time ray-tracer (<a href="https://github.com/AccelerateHS/accelerate-examples">source <i class="fa fa-github" aria-hidden="true"></i></a>)
+          </p>
         </div>
       </div>
 
@@ -104,7 +106,14 @@
           </p>
         </div>
         <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+          <div class="embed-responsive embed-responsive-1by1">
+            <video controls class="embed-responsive-item">
+              <source src="media/lulesh.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-center text-muted">
+            LULESH hydrodynamics mini-app (<a href="https://github.com/tmcdonell/lulesh-accelerate">source <i class="fa fa-github" aria-hidden="true"></i></a>)
+          </p>
         </div>
       </div>
 
