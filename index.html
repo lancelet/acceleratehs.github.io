@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="extra.css"> -->
-    <!-- <link rel="stylesheet" href="carousel.css"> -->
+    <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/c754f00c7e.js"></script>
@@ -55,70 +54,39 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-	<!-- Extra padding at the top of the body to leave space for the fixed navbar -->
-  <body style="padding-top: 70px;">
+  <!-- Extra padding at the top of the body to leave space for the fixed navbar -->
+  <body style="padding-top: 50px;">
 
-		<!-- Put the jumbotron inside a container so that it does not extend to the edge of the screen -->
-    <div class="container">
+    <!-- Put the jumbotron inside a container so that it does not extend to the edge of the screen -->
+    <!-- <div class="container"> -->
       <div class="jumbotron text-center">
         <h1>Accelerate</h1>
         <p>High-Performance Parallel Arrays for Haskell</p>
       </div>
+    <!-- </div> -->
+
+    <div class="container">
+      <p class="lead">
+        <i class="fa fa-rocket fa-3x fa-pull-left fa-border" aria-hidden="true"></i>
+        Accelerate is an embedded language for array-based computations in
+        Haskell. Programs are expressed in the form of collective operations on
+        regular multi-dimensional arrays, which are online compiled and executed
+        on a range of architectures including multicore CPUs and GPUs.
+      </p>
     </div>
 
     <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <h3>Column 1</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-        </div>
-        <div class="col-sm-4">
-          <h3>Column 2</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-        </div>
-        <div class="col-sm-4">
-          <h3>Column 3</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-        </div>
-      </div>
-
-      <a class="btn btn-danger" href="#">
-        <i class="fa fa-trash-o fa-lg"></i> Delete</a>
-      <a class="btn btn-default btn-sm" href="#">
-        <i class="fa fa-cog"></i> Settings</a>
-
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-square fa-stack-2x"></i>
-        <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
-      </span>
-
-      <i class="fa fa-rocket fa-5x" aria-hidden="true"></i>
-
-      <div class="row">
-        <div class="col-lg-4">
-          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-          <h2>Example</h2>
-          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-      </div>
-
-      <!-- <div class="subtlecircle sectiondivider"> -->
-      <!--   <span class="fa-stack"> -->
-      <!--     <i class="fa fa-circle fa-stack-2x"></i> -->
-      <!--     <i class="fa fa-rocket fa-stack-1x"></i> -->
-      <!--   </span> -->
-      <!--   <h5>Example</h5> -->
-      <!-- </div> -->
-
       <hr class="featurette-divider">
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading"><i class="fa fa-rocket fa-lg" aria-hidden="true"></i><span class="text-muted">  Example</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <h2 class="featurette-heading">First featurette<span
+              class="text-muted">  ooh yeeeeah</span></h2>
+          <p class="lead">
+            Accelerate is an embedded language for array-based computations in
+            Haskell. Computations are expressed in the form of collective
+            operations on regular multi-dimensional arrays, which are online
+            compiled and executed to a range of architectures.
+          </p>
         </div>
         <div class="col-md-5">
           <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
@@ -150,16 +118,17 @@
       <hr class="featurette-divider">
 
     </div>
-  </body>
 
-	<footer>
-		<div class="container text-center">
-			<p>
-			<a href="https://github.com/AccelerateHS/accelerate">GitHub Project</a> &middot;
-			<a href="https://github.com/AccelerateHS/accelerate/issues">Issue Tracker</a> &middot;
-			<a href="http://groups.google.com/group/accelerate-haskell">Mailing List</a>
-			</p>
-		</div>
-	</footer>
+    <footer class="footer">
+      <div class="container text-center">
+        <p class="text-muted">
+        <a href="https://github.com/AccelerateHS/accelerate">GitHub Project</a> &middot;
+        <a href="https://github.com/AccelerateHS/accelerate/issues">Issue Tracker</a> &middot;
+        <a href="http://groups.google.com/group/accelerate-haskell">Mailing List</a>
+        </p>
+      </div>
+    </footer>
+
+  </body>
 </html>
 

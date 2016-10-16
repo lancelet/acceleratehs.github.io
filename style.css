@@ -1,0 +1,21 @@
+
+.jumbotron {
+  color: white;
+  background: #1F1528;
+}
+
+footer {
+  color: white;
+  background: #222222;
+  padding-top: 8px;
+}
+
+footer a:link, a:visited {
+  color: #9D9D9D;
+}
+
+footer a:hover {
+  text-decoration: none;
+  color: white;
+}
+
