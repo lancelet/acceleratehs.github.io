@@ -1,4 +1,4 @@
-<html >
+<html $if(lang)$ lang="$lang$" xml:lang="$lang$"$endif$>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Style-Type" content="text/css">
@@ -11,8 +11,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/c754f00c7e.js"></script>
     <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script> -->
-    <title></title>
+$for(author-meta)$
+    <meta name="author" content="$author-meta$">
+$endfor$
+$if(date-meta)$
+    <meta name="date" content="$date-meta$">
+$endif$
+    <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
     <style type="text/css">code{white-space: pre;}</style>
+$if(quotes)$
+    <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
+$endif$
+$if(highlighting-css)$
+    <style type="text/css">
+      $highlighting-css$
+    </style>
+$endif$
+$if(math)$
+    $math$
+$endif$
+$for(header-includes)$
+    $header-includes$
+$endfor$
   </head>
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -48,17 +68,25 @@
   <body>
     <div class="container">
       <div class="row">
-                <div class="span12">
-                    <h1 id="publications">Publications</h1>
-<p>If you use Accelerate for academic research, you are encouraged (though certainly not required) to cite the following papers, which explain various aspects of the system. In reverse chronological order:</p>
-<ul>
-<li><p>Trevor L. McDonell, Manuel M. T. Chakravarty, Vinod Grover, and Ryan R. Newton.<br> Type-safe Runtime Code Generation: Accelerate to LLVM.<br> In <em>Haskell '15: The 8th ACM SIGPLAN Symposium on Haskell</em>, ACM, 2015.</p></li>
-<li><p>Robert Clifton-Everest, Trevor L. McDonell, Manuel M. T. Chakravarty, and Gabriele Keller.<br> Embedding Foreign Code.<br> In <em>PADL '14: The 16th International Symposium on Practical Aspects of Declarative Languages</em>, Springer-Verlag, LNCS, 2014.</p></li>
-<li><p>Trevor L. McDonell, Manuel M. T. Chakravarty, Gabriele Keller, and Ben Lippmeier.<br> Optimising Purely Functional GPU Programs.<br> In <em>ICFP '13: The 18th ACM SIGPLAN International Conference on Functional Programming</em>, ACM, 2013.</p></li>
-<li><p>Manuel M. T. Chakravarty, Gabriele Keller, Sean Lee, Trevor L. McDonell, and Vinod Grover.<br> Accelerating Haskell Array Codes with Multicore GPUs.<br> In <em>DAMP '11: Declarative Aspects of Multicore Programming</em>, ACM, 2011.</p></li>
-</ul>
-<p>Accelerate is primarily developed by academics, so citations matter a lot to us. As an added benefit, you increase Accelerate's exposure and potential user (and developer!) base, which is a benefit to all users of Accelerate. Thanks in advance!</p>
-                  </div>
+        $if(toc)$
+        <div id="$idprefix$TOC" class="span3">
+          <div class="well toc">
+            <ul>
+              <li class="nav-header">Table of Contents</li>
+            </ul>
+            $toc$
+          </div>
+        </div>
+        $endif$
+        <div class="span$if(toc)$9$else$12$endif$">
+          $for(include-before)$
+            $include-before$
+          $endfor$
+          $body$
+          $for(include-after)$
+            $include-after$
+          $endfor$
+        </div>
       </div>
     </div>
 
