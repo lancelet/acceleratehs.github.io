@@ -1,3 +1,8 @@
+---
+section: Publications
+nav-publications: True
+---
+
 Publications
 ============
 

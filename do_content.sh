@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-pandoc content/Publications.md --template templates/publications.html -o publications.html
+for file in $(ls content/*.md); do
+  pandoc ${file} --template template.html -o $(basename ${file/%.md/.html})
+done
 
