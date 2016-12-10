@@ -9,5 +9,5 @@ Accelerate website
 
   1. For the main page content, edit the markdown files in directory `content/`
 
-  1. Run the script `do_content.sh` to generate the corresponding `.html` files.
+  1. Run `make` to generate the corresponding `.html` files.
 
