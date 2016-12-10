@@ -69,16 +69,14 @@ $endfor$
     <div class="container">
       <div class="row">
         $if(toc)$
-        <div id="$idprefix$TOC" class="span3">
-          <div class="well toc">
+          <div id="$idprefix$TOC" class="well">
             <!-- <ul> -->
             <!--   <li class="nav-header" id="$idprefix$toctitle">$if(toctitle)$$toctitle$$else$Table of Contents$endif$</il> -->
             <!-- </ul> -->
             $toc$
           </div>
-        </div>
         $endif$
-        <div class="span$if(toc)$9$else$12$endif$">
+        <div class="container">
           $for(include-before)$
             $include-before$
           $endfor$
