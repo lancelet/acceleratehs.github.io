@@ -1,7 +1,7 @@
 Accelerate website
 ==================
 
-[acceleratehs.github.io](acceleratehs.github.io)
+[acceleratehs.github.io](https://acceleratehs.github.io)
 
 ## Instructions
 
