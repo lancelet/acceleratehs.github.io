@@ -20,15 +20,15 @@ external libraries.
 
 ## 1. Setup Haskell & LLVM
 
-Select your operating system:
+Selected operating system: **macOS**
 
-<a href="/get-started/macos" title="macOS" class="os-logo os-choose">
+<a href="/get-started/macos" title="macOS" class="os-logo">
   <img src="/media/apple-logo.svg">
 </a>
-<a href="/get-started/linux" title="Linux" class="os-logo os-choose">
+<a href="/get-started/linux" title="Linux" class="os-logo os-faded">
   <img src="/media/linux-logo.svg">
 </a>
-<a href="/get-started/windows" title="Windows" class="os-logo os-choose">
+<a href="/get-started/windows" title="Windows" class="os-logo os-faded">
   <img src="/media/windows-logo.svg">
 </a>
 

@@ -35,6 +35,34 @@ h1 {
   text-shadow: 2px 2px 4px #aaa;
 }
 
+h2 {
+  font-family: 'Raleway';
+  font-weight: 600;
+  text-shadow: 1px 1px 2px #aaa;
+}
+
+h3 {
+  font-family: 'Raleway';
+}
+
+.os-logo img {
+  width:  5em;
+  height: 5em;
+  margin-right: 2em;
+}
+
+.os-faded img {
+  opacity: 0.3;
+}
+
+.os-choose img {
+  opacity: 0.8;
+}
+
+.os-choose:hover img {
+  opacity: 1.0;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

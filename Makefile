@@ -1,10 +1,11 @@
+VPATH		:= content
 PANDOC		:= pandoc
 PANDOC_FLAGS	:= --toc --toc-depth=3
 TEMPLATE 	:= template.html
-MARKDOWN	:= $(wildcard content/*.md)
+MARKDOWN	:= $(shell find content -name "*.md")
 HTML		:= $(patsubst content/%.md,%.html,$(MARKDOWN))
 
-%.html: content/%.md $(TEMPLATE)
+%.html: %.md $(TEMPLATE)
 	$(PANDOC) $< -o $@ --template $(TEMPLATE) $(PANDOC_FLAGS)
 
 .PHONY: site
