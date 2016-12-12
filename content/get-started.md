@@ -33,11 +33,92 @@ Select your operating system:
 </a>
 
 
-## 2. Run an Accelerate program
+## 2. Install Accelerate
+
+We can now install the core Accelerate library:
+```sh
+cabal install accelerate
+```
+
+This is sufficient to write programs in Accelerate as well as execute them using
+the included interpreter backend.[^1] For good performance however we also need
+to install one (or both) of the LLVM backends, which will compile Accelerate
+programs to native code.
+
+Install a version of the `llvm-general` package suitable for the version of LLVM
+installed in step [1.2](#llvm).[^2] The first two numbers of the version of LLVM
+and the `llvm-general` package must match. We must also install with shared
+library support so that we can use `llvm-general` from within `ghci` (and
+Template Haskell). Continuing the example above where we installed LLVM-3.8:
+```sh
+cabal install llvm-general -fshared-llvm --constraint="llvm-general==3.8.*"
+```
+
+Install the Accelerate LLVM backend for multicore CPUs:
+```sh
+cabal install accelerate-llvm-native
+```
+
+(Optional) If you have a CUDA capable GPU and installed the CUDA toolkit in step
+[1.3](#cuda-optional), you can also install the Accelerate backend for
+NVIDIA GPUs:
+```sh
+cabal install accelerate-llvm-ptx
+```
 
 
-## 3. Next steps
+## 3. Run an Accelerate program
+
+Copy the following content into a file called `Dotp.hs`. This simple example
+computes the dot product of two vectors of single-precision floating-point
+numbers. If you installed the GPU backend in step [2](#install-accelerate), you
+can uncomment the third line (delete the leading `--`) to enable both the CPU
+and GPU backends.
+
+```haskell
+import Data.Array.Accelerate              as A
+import Data.Array.Accelerate.LLVM.Native  as CPU
+-- import Data.Array.Accelerate.LLVM.PTX     as GPU
+
+dotp :: Acc (Vector Float) -> Acc (Vector Float) -> Acc (Scalar Float)
+dotp xs ys = A.fold (+) 0 (A.zipWith (*) xs ys)
+```
+
+Open up a terminal and load the file into the Haskell interpreter with `ghci
+Dotp.hs`.
+
+  1. Create some arrays to feed into the computation. See the
+     [documentation](/documentation.html) for more information, as well as
+     additional ways to get data into the program.
+```
+ghci> let xs = fromList (Z:.10) [0..]   :: Vector Float
+ghci> let ys = fromList (Z:.10) [1,3..] :: Vector Float
+```
+
+  2. Run the computation:
+```
+ghci> CPU.run $ dotp (use xs) (use ys)
+Scalar Z [615.0]
+```
+     This will convert the Accelerate program into LLVM code, optimise, compile,
+     and execute it on the CPU. If your computer has multiple CPU cores, you can
+     execute using multiple CPU cores by launching `ghci` (or running a compiled
+     program) with the additional command line options `+RTS -Nx -RTS`, to use
+     _x_ CPU cores (or omit _x_ to use as many cores as your machine has).
+
+  3. (Optional) If you installed the `accelerate-llvm-ptx` backend, you can also
+     execute the computation on the GPU simply by:
+```
+ghci> GPU.run $ dotp (use xs) (use ys)
+Scalar Z [615.0]
+```
+     This will instead convert the Accelerate program into LLVM code suitable
+     for the GPU, optimise, compile, and execute it on the GPU, as well as copy
+     the input arrays into GPU memory and copy the result back into CPU memory.
 
 
-## 4. Further information
+## 4. Next steps
+
+
+## 5. Further information
 
