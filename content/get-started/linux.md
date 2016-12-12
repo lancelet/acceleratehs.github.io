@@ -76,7 +76,8 @@ apt-get install llvm-3.8-dev
 
 The LLVM-based Accelerate packages are currently tested with LLVM versions 3.5,
 3.8, and 3.9. However, LLVM-3.5 is currently not compatible with GHC-8.0. Please
-contact us if this is a problem for you.
+contact us if this is a problem for you. Remember which version of LLVM you
+install.
 
 
 ### 1.3 CUDA (optional)
@@ -89,6 +90,37 @@ CUDA toolkit available [here](https://developer.nvidia.com/cuda-downloads).
 
 ## 2. Install Accelerate
 
+We can now install the core Accelerate library:
+```sh
+cabal install accelerate
+```
+
+This is sufficient to write programs in Accelerate as well as execute them using
+the included interpreter backend.[^1] For good performance however we also need
+to install one (or both) of the LLVM backends, which will compile Accelerate
+programs to native code.
+
+Install a version of the `llvm-general` package suitable for the version of LLVM
+installed in step [1.2](#llvm).[^2] The first two numbers of the version of LLVM
+and the `llvm-general` package must match. We must also install with shared
+library support so that we can use `llvm-general` from within `ghci` (and
+Template Haskell). Continuing the example above where we installed LLVM-3.8:
+```sh
+cabal install llvm-general -fshared-llvm --constraint="llvm-general==3.8.*"
+```
+
+Install the Accelerate LLVM backend for multicore CPUs:
+```sh
+cabal install accelerate-llvm-native
+```
+
+(Optional) If you have a CUDA capable GPU and installed the CUDA toolkit in step
+[1.3](#cuda-optional), you can also install the Accelerate backend for
+NVIDIA GPUs:
+```sh
+cabal install accelerate-llvm-ptx
+```
+
 
 ## 3. Run an Accelerate program
 
@@ -97,4 +129,16 @@ CUDA toolkit available [here](https://developer.nvidia.com/cuda-downloads).
 
 
 ## 5. Further information
+
+
+
+
+  [^1]: Although the core `accelerate` package includes an interpreter that can be
+        used to run Accelerate programs, its performance is fairly poor as it is
+        designed as a reference implementation of the language semantics, rather
+        than for performance.
+
+  [^2]: This constraint is also why we currently can not support LLVM-3.6,
+        LLVM-3.7, or LLVM-3.5 on GHC-8.0; `llvm-general` is unfortunately not
+        currently available for those targets.
 
