@@ -122,3 +122,15 @@ Scalar Z [615.0]
 
 ## 5. Further information
 
+
+
+
+  [^1]: Although the core `accelerate` package includes an interpreter that can be
+        used to run Accelerate programs, its performance is fairly poor as it is
+        designed as a reference implementation of the language semantics, rather
+        than for performance.
+
+  [^2]: This constraint is also why we currently can not support LLVM-3.6,
+        LLVM-3.7, or LLVM-3.5 on GHC-8.0; `llvm-general` is unfortunately not
+        currently available for those targets.
+
