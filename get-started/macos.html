@@ -116,21 +116,21 @@
 <p>Executing an Accelerate program differs from that of regular Haskell programs. Programs written in Accelerate require both the Accelerate library, which contains the operations of the language we use to write programs, as well as a (or several) backend(s) which will compile and execute the program for a particular target architecture, such as CPUs or GPUs.</p>
 <p>The two primary Accelerate backends are currently based on <a href="http://llvm.org">LLVM</a>, a mature optimising compiler targeting several architectures. LLVM is available through both the Homebrew and MacPorts package managers, or can be compiled manually from the source releases found <a href="http://llvm.org/releases/download.html">here</a>. If compiling from source be sure to build LLVM with shared library support.</p>
 <p>Example of installing LLVM-3.8 via <a href="http://brew.sh">Homebrew</a>:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">brew</span> install libffi
-<span class="kw">brew</span> install homebrew/versions/llvm38 --all-targets</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">brew</span> install libffi
+<span class="ex">brew</span> install homebrew/versions/llvm38 --all-targets</code></pre></div>
 <p>The LLVM-based Accelerate packages are currently tested with LLVM versions 3.5, 3.8, and 3.9. However, LLVM-3.5 is currently not compatible with GHC-8.0. Please contact us if this is a problem for you.</p>
 <h3 id="cuda-optional">1.3 CUDA (optional)</h3>
 <p>If you have a CUDA capable NVIDIA GPU (see the <a href="https://en.wikipedia.org/wiki/CUDA#GPUs_supported">list of supported devices</a>) and would like to run Accelerate programs on the GPU, you will need to download and install the CUDA toolkit available <a href="https://developer.nvidia.com/cuda-downloads">here</a>.</p>
 <h2 id="install-accelerate">2. Install Accelerate</h2>
 <p>We can now install the core Accelerate library:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">cabal</span> install accelerate</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate</code></pre></div>
 <p>This is sufficient to write programs in Accelerate as well as execute them using the included interpreter backend.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> For good performance however we also need to install one (or both) of the LLVM backends, which will compile Accelerate programs to native code.</p>
 <p>Install a version of the <code>llvm-general</code> package suitable for the version of LLVM installed in step <a href="#llvm">1.2</a>.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> The first two numbers of the version of LLVM and the <code>llvm-general</code> package must match. We must also install with shared library support so that we can use <code>llvm-general</code> from within <code>ghci</code> (and Template Haskell). Continuing the example above where we installed LLVM-3.8:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">cabal</span> install llvm-general -fshared-llvm --constraint=<span class="st">&quot;llvm-general==3.8.*&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install llvm-general -fshared-llvm --constraint=<span class="st">&quot;llvm-general==3.8.*&quot;</span></code></pre></div>
 <p>Install the Accelerate LLVM backend for multicore CPUs:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">cabal</span> install accelerate-llvm-native</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate-llvm-native</code></pre></div>
 <p>(Optional) If you have a CUDA capable GPU and installed the CUDA toolkit in step <a href="#cuda-optional">1.3</a>, you can also install the Accelerate backend for NVIDIA GPUs:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">cabal</span> install accelerate-llvm-ptx</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate-llvm-ptx</code></pre></div>
 <h2 id="run-an-accelerate-program">3. Run an Accelerate program</h2>
 <p>Copy the following content into a file called <code>Dotp.hs</code>. This simple example computes the dot product of two vectors of single-precision floating-point numbers. If you installed the GPU backend in step <a href="#install-accelerate">2</a>, you can uncomment the third line (delete the leading <code>--</code>) to enable both the CPU and GPU backends.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate</span>              <span class="kw">as</span> <span class="dt">A</span>
