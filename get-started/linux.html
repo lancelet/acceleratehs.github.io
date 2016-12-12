@@ -13,6 +13,43 @@
     <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script> -->
     <title>Accelerate: Get Started</title>
     <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+      div.sourceCode { overflow-x: auto; }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+        margin: 0; padding: 0; vertical-align: baseline; border: none; }
+      table.sourceCode { width: 100%; line-height: 100%; }
+      td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+      td.sourceCode { padding-left: 5px; }
+      code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code > span.dt { color: #902000; } /* DataType */
+      code > span.dv { color: #40a070; } /* DecVal */
+      code > span.bn { color: #40a070; } /* BaseN */
+      code > span.fl { color: #40a070; } /* Float */
+      code > span.ch { color: #4070a0; } /* Char */
+      code > span.st { color: #4070a0; } /* String */
+      code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code > span.ot { color: #007020; } /* Other */
+      code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code > span.fu { color: #06287e; } /* Function */
+      code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      code > span.cn { color: #880000; } /* Constant */
+      code > span.sc { color: #4070a0; } /* SpecialChar */
+      code > span.vs { color: #4070a0; } /* VerbatimString */
+      code > span.ss { color: #bb6688; } /* SpecialString */
+      code > span.im { } /* Import */
+      code > span.va { color: #19177c; } /* Variable */
+      code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code > span.op { color: #666666; } /* Operator */
+      code > span.bu { } /* BuiltIn */
+      code > span.ex { } /* Extension */
+      code > span.pp { color: #bc7a00; } /* Preprocessor */
+      code > span.at { color: #7d9029; } /* Attribute */
+      code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
   </head>
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -54,10 +91,15 @@
             <!-- </ul> -->
             <ul>
             <li><a href="#get-started">Get Started</a><ul>
-            <li><a href="#setup-haskell-llvm">1. Setup Haskell &amp; LLVM</a></li>
-            <li><a href="#run-an-accelerate-program">2. Run an Accelerate program</a></li>
-            <li><a href="#next-steps">3. Next steps</a></li>
-            <li><a href="#further-information">4. Further information</a></li>
+            <li><a href="#setup-haskell-llvm">1. Setup Haskell &amp; LLVM</a><ul>
+            <li><a href="#ghc">1.1 GHC</a></li>
+            <li><a href="#llvm">1.2 LLVM</a></li>
+            <li><a href="#cuda-optional">1.3 CUDA (optional)</a></li>
+            </ul></li>
+            <li><a href="#install-accelerate">2. Install Accelerate</a></li>
+            <li><a href="#run-an-accelerate-program">3. Run an Accelerate program</a></li>
+            <li><a href="#next-steps">4. Next steps</a></li>
+            <li><a href="#further-information">5. Further information</a></li>
             </ul></li>
             </ul>
           </div>
@@ -68,9 +110,28 @@
 <h2 id="setup-haskell-llvm">1. Setup Haskell &amp; LLVM</h2>
 <p>Selected operating system: <strong>Linux</strong></p>
 <p><a href="/get-started/macos" title="macOS" class="os-logo os-faded"> <img src="/media/apple-logo.svg"> </a> <a href="/get-started/linux" title="Linux" class="os-logo"> <img src="/media/linux-logo.svg"> </a> <a href="/get-started/windows" title="Windows" class="os-logo os-faded"> <img src="/media/windows-logo.svg"> </a></p>
-<h2 id="run-an-accelerate-program">2. Run an Accelerate program</h2>
-<h2 id="next-steps">3. Next steps</h2>
-<h2 id="further-information">4. Further information</h2>
+<h3 id="ghc">1.1 GHC</h3>
+<p>Download and install <a href="https://www.haskell.org/downloads/linux">GHC</a>. Binary package-based installers are available for a number of Linux distributions, as described on the linked site. Accelerate is currently tested with GHC version 7.10.x and 8.0.x, but should also work with 7.8.x. Remember which version of GHC you install, as this will be important in the next step.</p>
+<h3 id="llvm">1.2 LLVM</h3>
+<p>Executing an Accelerate program differs from that of regular Haskell programs. Programs written in Accelerate require both the Accelerate library, which contains the operations of the language we use to write programs, as well as a (or several) backend(s) which will compile and execute the program for a particular target architecture, such as CPUs or GPUs.</p>
+<p>The two primary Accelerate backends are currently based on <a href="http://llvm.org">LLVM</a>, a mature optimising compiler targeting several architectures. Binary distributions of LLVM are available for Debian and Ubuntu systems at <a href="http://apt.llvm.org">apt.llvm.org</a>, or can be compiled manually from the source releases found <a href="http://llvm.org/releases/download.html">here</a>. If compiling from source be sure to build LLVM with shared library support.</p>
+<p>Example process of installing LLVM-3.8 on Ubuntu-16.04:</p>
+<ol style="list-style-type: decimal">
+<li><p>Retrieve the archive signature:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">wget</span> -O - http://apt.llvm.org/llvm-snapshot.gpg.key <span class="kw">|</span> <span class="kw">sudo</span> apt-key add -</code></pre></div></li>
+<li><p>Add the APT package locations:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">deb</span> http://apt.llvm.org/xenial/ llvm-toolchain-xenial main
+<span class="kw">deb</span> http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.8 main</code></pre></div></li>
+<li><p>Install LLVM:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="kw">apt-get</span> install llvm-3.8-dev</code></pre></div></li>
+</ol>
+<p>The LLVM-based Accelerate packages are currently tested with LLVM versions 3.5, 3.8, and 3.9. However, LLVM-3.5 is currently not compatible with GHC-8.0. Please contact us if this is a problem for you.</p>
+<h3 id="cuda-optional">1.3 CUDA (optional)</h3>
+<p>If you have a CUDA capable NVIDIA GPU (see the <a href="https://en.wikipedia.org/wiki/CUDA#GPUs_supported">list of supported devices</a>) and would like to run Accelerate programs on the GPU, you will need to download and install the CUDA toolkit available <a href="https://developer.nvidia.com/cuda-downloads">here</a>.</p>
+<h2 id="install-accelerate">2. Install Accelerate</h2>
+<h2 id="run-an-accelerate-program">3. Run an Accelerate program</h2>
+<h2 id="next-steps">4. Next steps</h2>
+<h2 id="further-information">5. Further information</h2>
                   </div>
       </div>
     </div>

@@ -33,11 +33,13 @@ Selected operating system: **Windows**
 </a>
 
 
-## 2. Run an Accelerate program
-
-
-## 3. Next steps
-
-
-## 4. Further information
+Oh no! We currently do not have any Windows machines available to test
+Accelerate on. If you try installing Accelerate on Windows, please let us know
+on the [mailing list](http://groups.google.com/group/accelerate-haskell) or
+[issue tracker](https://github.com/AccelerateHS/accelerate/issues) (preferred)
+how you went. Especially if you are successful, please let us know the procedure
+you used so that we can update the instructions to help others (or consider
+submitting a [pull
+request!](https://github.com/AccelerateHS/acceleratehs.github.io)). Thanks in
+advance!
 
