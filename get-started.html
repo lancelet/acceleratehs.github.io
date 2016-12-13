@@ -69,8 +69,9 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active"><a href="/get-started.html">Get Started</a></li>
-          <li><a href="/libraries.html">Libraries</a></li>
           <li><a href="/documentation.html">Documentation</a></li>
+          <li><a href="/libraries.html">Libraries</a></li>
+          <li><a href="/examples.html">Examples</a></li>
           <li><a href="/community.html">Community</a></li>
           <li><a href="/publications.html">Publications</a></li>
         </ul>
@@ -95,7 +96,6 @@
             <li><a href="#install-accelerate">2. Install Accelerate</a></li>
             <li><a href="#run-an-accelerate-program">3. Run an Accelerate program</a></li>
             <li><a href="#next-steps">4. Next steps</a></li>
-            <li><a href="#further-information">5. Further information</a></li>
             </ul></li>
             </ul>
           </div>
@@ -110,11 +110,11 @@
 <p>We can now install the core Accelerate library:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate</code></pre></div>
 <p>This is sufficient to write programs in Accelerate as well as execute them using the included interpreter backend.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> For good performance however we also need to install one (or both) of the LLVM backends, which will compile Accelerate programs to native code.</p>
-<p>Install a version of the <code>llvm-general</code> package suitable for the version of LLVM installed in step <a href="#llvm">1.2</a>.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> The first two numbers of the version of LLVM and the <code>llvm-general</code> package must match. We must also install with shared library support so that we can use <code>llvm-general</code> from within <code>ghci</code> (and Template Haskell). Continuing the example above where we installed LLVM-3.8:</p>
+<p>Install a version of the <code>llvm-general</code> package suitable for the version of LLVM installed on your system. The first two numbers of the version of LLVM and the <code>llvm-general</code> package must match. We must also install with shared library support so that we can use <code>llvm-general</code> from within <code>ghci</code> (and Template Haskell). For example, if you have LLVM-3.8 installed:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install llvm-general -fshared-llvm --constraint=<span class="st">&quot;llvm-general==3.8.*&quot;</span></code></pre></div>
 <p>Install the Accelerate LLVM backend for multicore CPUs:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate-llvm-native</code></pre></div>
-<p>(Optional) If you have a CUDA capable GPU and installed the CUDA toolkit in step <a href="#cuda-optional">1.3</a>, you can also install the Accelerate backend for NVIDIA GPUs:</p>
+<p>(Optional) If you have a CUDA capable GPU, you can also install the Accelerate backend for NVIDIA GPUs:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate-llvm-ptx</code></pre></div>
 <h2 id="run-an-accelerate-program">3. Run an Accelerate program</h2>
 <p>Copy the following content into a file called <code>Dotp.hs</code>. This simple example computes the dot product of two vectors of single-precision floating-point numbers. If you installed the GPU backend in step <a href="#install-accelerate">2</a>, you can uncomment the third line (delete the leading <code>--</code>) to enable both the CPU and GPU backends.</p>
@@ -139,12 +139,16 @@ Scalar Z [615.0]</code></pre>
 <p>This will instead convert the Accelerate program into LLVM code suitable for the GPU, optimise, compile, and execute it on the GPU, as well as copy the input arrays into GPU memory and copy the result back into CPU memory.</p></li>
 </ol>
 <h2 id="next-steps">4. Next steps</h2>
-<h2 id="further-information">5. Further information</h2>
+<p>Congratulations, you are set up to use Accelerate! Now you are ready to:</p>
+<ul>
+<li><p><a href="/documentation.html">Learn more about the Accelerate language</a></p></li>
+<li><p><a href="/libraries.html">Browse libraries that you can use in your projects</a></p></li>
+<li><p><a href="/examples.html">Check out some example programs</a></p></li>
+</ul>
 <div class="footnotes">
 <hr />
 <ol>
 <li id="fn1"><p>Although the core <code>accelerate</code> package includes an interpreter that can be used to run Accelerate programs, its performance is fairly poor as it is designed as a reference implementation of the language semantics, rather than for performance.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>This constraint is also why we currently can not support LLVM-3.6, LLVM-3.7, or LLVM-3.5 on GHC-8.0; <code>llvm-general</code> is unfortunately not currently available for those targets.<a href="#fnref2">↩</a></p></li>
 </ol>
 </div>
                   </div>

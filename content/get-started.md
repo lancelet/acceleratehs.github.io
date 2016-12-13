@@ -46,10 +46,10 @@ to install one (or both) of the LLVM backends, which will compile Accelerate
 programs to native code.
 
 Install a version of the `llvm-general` package suitable for the version of LLVM
-installed in step [1.2](#llvm).[^2] The first two numbers of the version of LLVM
+installed on your system. The first two numbers of the version of LLVM
 and the `llvm-general` package must match. We must also install with shared
 library support so that we can use `llvm-general` from within `ghci` (and
-Template Haskell). Continuing the example above where we installed LLVM-3.8:
+Template Haskell). For example, if you have LLVM-3.8 installed:
 ```sh
 cabal install llvm-general -fshared-llvm --constraint="llvm-general==3.8.*"
 ```
@@ -59,9 +59,8 @@ Install the Accelerate LLVM backend for multicore CPUs:
 cabal install accelerate-llvm-native
 ```
 
-(Optional) If you have a CUDA capable GPU and installed the CUDA toolkit in step
-[1.3](#cuda-optional), you can also install the Accelerate backend for
-NVIDIA GPUs:
+(Optional) If you have a CUDA capable GPU, you can also install the Accelerate
+backend for NVIDIA GPUs:
 ```sh
 cabal install accelerate-llvm-ptx
 ```
@@ -119,9 +118,13 @@ Scalar Z [615.0]
 
 ## 4. Next steps
 
+Congratulations, you are set up to use Accelerate! Now you are ready to:
 
-## 5. Further information
+  * [Learn more about the Accelerate language](/documentation.html)
 
+  * [Browse libraries that you can use in your projects](/libraries.html)
+
+  * [Check out some example programs](/examples.html)
 
 
 

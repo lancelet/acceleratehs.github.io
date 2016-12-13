@@ -174,9 +174,13 @@ Scalar Z [615.0]
 
 ## 4. Next steps
 
+Congratulations, you are set up to use Accelerate! Now you are ready to:
 
-## 5. Further information
+  * [Learn more about the Accelerate language](/documentation.html)
 
+  * [Browse libraries that you can use in your projects](/libraries.html)
+
+  * [Check out some example programs](/examples.html)
 
 
 
