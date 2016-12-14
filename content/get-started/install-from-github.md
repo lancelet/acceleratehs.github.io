@@ -3,8 +3,9 @@ section: "Get Started"
 nav-get-started: True
 ---
 
-# Get Started
-## Installing from GitHub
+# Install from GitHub
+
+## Checkout & Build
 
 The recommend way to build and install the development version of _Accelerate_
 is to use the [`stack`](http://www.haskellstack.org) build tool. This will
