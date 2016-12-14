@@ -24,6 +24,11 @@ import Data.Array.Accelerate.LLVM.PTX
 ```haskell
 import Data.Array.Accelerate.CUDA
 ```
-    Consult the [getting started](/get-started.html) section for help installing
-    the `accelerate-llvm-ptx` package.
+    Alternatively, if you do not have a CUDA capable GPU, rather than using the
+    (very slow) interpreter backend you can use the `accelerate-llvm-native`
+    backend for multicore CPUs, which was not available at the time of
+    publication:
+```haskell
+import Data.Array.Accelerate.LLVM.Native
+```
 

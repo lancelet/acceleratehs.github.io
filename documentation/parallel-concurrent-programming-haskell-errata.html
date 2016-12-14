@@ -105,7 +105,8 @@
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate.LLVM.PTX</span></code></pre></div>
 <p>in place of:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate.CUDA</span></code></pre></div>
-<p>Consult the <a href="/get-started.html">getting started</a> section for help installing the <code>accelerate-llvm-ptx</code> package.</p></li>
+<p>Alternatively, if you do not have a CUDA capable GPU, rather than using the (very slow) interpreter backend you can use the <code>accelerate-llvm-native</code> backend for multicore CPUs, which was not available at the time of publication:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate.LLVM.Native</span></code></pre></div></li>
 </ul>
                   </div>
       </div>
