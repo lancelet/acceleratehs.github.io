@@ -84,6 +84,11 @@ We can now install the core Accelerate library:
 cabal install accelerate
 ```
 
+This will install the current stable release of Accelerate from
+[Hackage](https://hackage.haskell.org). If you would like to instead install the
+latest in-development version, see how to [install from
+GitHub](/get-started/install-from-github.html).
+
 This is sufficient to write programs in Accelerate as well as execute them using
 the included interpreter backend.[^1] For good performance however we also need
 to install one (or both) of the LLVM backends, which will compile Accelerate

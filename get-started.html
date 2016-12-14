@@ -109,6 +109,7 @@
 <h2 id="install-accelerate">2. Install Accelerate</h2>
 <p>We can now install the core Accelerate library:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate</code></pre></div>
+<p>This will install the current stable release of Accelerate from <a href="https://hackage.haskell.org">Hackage</a>. If you would like to instead install the latest in-development version, see how to <a href="/get-started/install-from-github.html">install from GitHub</a>.</p>
 <p>This is sufficient to write programs in Accelerate as well as execute them using the included interpreter backend.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> For good performance however we also need to install one (or both) of the LLVM backends, which will compile Accelerate programs to native code.</p>
 <p>Install a version of the <code>llvm-general</code> package suitable for the version of LLVM installed on your system. The first two numbers of the version of LLVM and the <code>llvm-general</code> package must match. We must also install with shared library support so that we can use <code>llvm-general</code> from within <code>ghci</code> (and Template Haskell). For example, if you have LLVM-3.8 installed:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install llvm-general -fshared-llvm --constraint=<span class="st">&quot;llvm-general==3.8.*&quot;</span></code></pre></div>
