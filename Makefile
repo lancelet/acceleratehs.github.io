@@ -6,6 +6,7 @@ MARKDOWN	:= $(shell find content -name "*.md")
 HTML		:= $(patsubst content/%.md,%.html,$(MARKDOWN))
 
 %.html: %.md $(TEMPLATE)
+	@mkdir -p $(dir $@)
 	$(PANDOC) $< -o $@ --template $(TEMPLATE) $(PANDOC_FLAGS)
 
 .PHONY: site
