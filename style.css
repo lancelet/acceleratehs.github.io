@@ -69,6 +69,27 @@ h3 {
   width: 100%;
 }
 
+ol {
+  counter-reset: item;
+}
+
+ol > li {
+  counter-increment: item;
+}
+
+ol ol > li {
+  display: block;
+}
+
+ol ol > li:before {
+  content: counters(item,".") ". ";
+  margin-left: -20px;
+}
+
+ol ol > li:last-child {
+  margin-bottom: 10px;
+}
+
 /* missing from bootstrap-3.7 */
 .embed-responsive-1by1 {
   padding-bottom: 100%;
