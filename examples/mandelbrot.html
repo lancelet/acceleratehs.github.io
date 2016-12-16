@@ -1,0 +1,309 @@
+<html >
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:600,800|Open+Sans">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/c754f00c7e.js"></script>
+    <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script> -->
+    <title>Accelerate: Examples</title>
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+      div.sourceCode { overflow-x: auto; }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+        margin: 0; padding: 0; vertical-align: baseline; border: none; }
+      table.sourceCode { width: 100%; line-height: 100%; }
+      td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+      td.sourceCode { padding-left: 5px; }
+      code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code > span.dt { color: #902000; } /* DataType */
+      code > span.dv { color: #40a070; } /* DecVal */
+      code > span.bn { color: #40a070; } /* BaseN */
+      code > span.fl { color: #40a070; } /* Float */
+      code > span.ch { color: #4070a0; } /* Char */
+      code > span.st { color: #4070a0; } /* String */
+      code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code > span.ot { color: #007020; } /* Other */
+      code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code > span.fu { color: #06287e; } /* Function */
+      code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      code > span.cn { color: #880000; } /* Constant */
+      code > span.sc { color: #4070a0; } /* SpecialChar */
+      code > span.vs { color: #4070a0; } /* VerbatimString */
+      code > span.ss { color: #bb6688; } /* SpecialString */
+      code > span.im { } /* Import */
+      code > span.va { color: #19177c; } /* Variable */
+      code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code > span.op { color: #666666; } /* Operator */
+      code > span.bu { } /* BuiltIn */
+      code > span.ex { } /* Extension */
+      code > span.pp { color: #bc7a00; } /* Preprocessor */
+      code > span.at { color: #7d9029; } /* Attribute */
+      code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  </head>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/index.html" style="font-family: 'Raleway'; font-weight: 600;">AccelerateHS</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="/get-started.html">Get Started</a></li>
+          <li><a href="/documentation.html">Documentation</a></li>
+          <li><a href="/libraries.html">Libraries</a></li>
+          <li class="active"><a href="/examples.html">Examples</a></li>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/publications.html">Publications</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://github.com/AccelerateHS/accelerate"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+          <li><a href="http://groups.google.com/group/accelerate-haskell"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i></a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <body>
+    <div class="container">
+      <div class="row">
+                  <div id="TOC" class="well">
+            <!-- <ul> -->
+            <!--   <li class="nav-header" id="toctitle">Table of Contents</il> -->
+            <!-- </ul> -->
+            <ul>
+            <li><a href="#mandelbrot">Mandelbrot</a><ul>
+            <li><a href="#tutorial">Tutorial</a><ul>
+            <li><a href="#computing-the-set">Computing the set</a></li>
+            <li><a href="#generating-an-image">Generating an image</a></li>
+            </ul></li>
+            <li><a href="#code">Code</a></li>
+            </ul></li>
+            </ul>
+          </div>
+                <div class="container">
+                    <h1 id="mandelbrot">Mandelbrot</h1>
+<p>The <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set</a> is generated by sampling complex numbers <span class="math inline">\(c\)</span> in the complex plane, and determining whether under iteration of the polynomial:</p>
+<p style="text-align: center;">
+<span class="math inline">\(z_{n+1} = c + z_n^2\)</span>
+</p>
+<p>that the magnitude of <span class="math inline">\(z\)</span> (written <span class="math inline">\(|z_n|\)</span>) remains bounded however large <span class="math inline">\(n\)</span> gets. Images of the Mandelbrot set are created such that each pixel corresponds to a point <span class="math inline">\(c\)</span> in the complex plane, and its colour depends on the number of iterations <span class="math inline">\(n\)</span> before the iteration diverges, where <span class="math inline">\(z_0 = c\)</span>. The set of points forming the boundary of this relation forms the distinctive and easily recognisable fractal shape shown in the following image, which this page will explain how to create in Accelerate.</p>
+<p><img class="img-responsive center-block" src="/media/mandelbrot/mandelbrot.jpg" alt="Mandelbrot set"></p>
+<h2 id="tutorial">Tutorial</h2>
+<h3 id="computing-the-set">Computing the set</h3>
+<p>Complex numbers are available in Accelerate by importing the following module:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate.Data.Complex</span></code></pre></div>
+<p>The function <code>next</code> embodies the core equation governing the Mandelbrot set; it computes the value <span class="math inline">\(z_{n+1}\)</span> at a given point <span class="math inline">\(c\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">next ::</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>)
+next c z <span class="fu">=</span> c <span class="fu">+</span> z <span class="fu">*</span> z</code></pre></div>
+<p>Notice that the usual <code>Num</code> operations such as <code>(+)</code> and <code>(*)</code> have already been defined for us for complex numbers in <code>Exp</code>. So, other than the type signature, this is the same definition as for regular Haskell.</p>
+<p>Thinking about the program as a whole, we need to iterate the function <code>next</code>, and remember the number of iterations until it diverged. In practice, we iterate the equation for a fixed maximum number of times, and if it has not diverged we declare the point to be in the set. We can keep track of the value <span class="math inline">\(z\)</span> and the current iteration number <span class="math inline">\(i\)</span> by combining them together:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">step ::</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>, <span class="dt">Int</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>, <span class="dt">Int</span>)
+step c (unlift <span class="ot">-&gt;</span> (z, i)) <span class="fu">=</span> lift (next c z, i <span class="fu">+</span> constant <span class="dv">1</span>)</code></pre></div>
+<p>Here <code>step</code> takes the original value <span class="math inline">\(c\)</span>, together with the current value <span class="math inline">\(z_n\)</span> and iteration number <span class="math inline">\(i\)</span> bundled in a pair of type <code>Exp (Complex Float, Int)</code>. Unlike in regular Haskell, we can't use pattern matching to access the components of the pair. Accelerate provides a few ways to get at the values, for example the usual functions <code>fst</code> and <code>snd</code> for extracting the first and second component respectively:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">fst<span class="ot"> ::</span> (<span class="dt">Elt</span> b, <span class="dt">Elt</span> a) <span class="ot">=&gt;</span> <span class="dt">Exp</span> (a, b) <span class="ot">-&gt;</span> <span class="dt">Exp</span> a
+snd<span class="ot"> ::</span> (<span class="dt">Elt</span> b, <span class="dt">Elt</span> a) <span class="ot">=&gt;</span> <span class="dt">Exp</span> (a, b) <span class="ot">-&gt;</span> <span class="dt">Exp</span> b</code></pre></div>
+<p>More generally, and as we have used here (in a <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/glasgow_exts.html#view-patterns">view pattern</a>), the function <code>unlift</code> can be used unpack constructors into their components. In this instance, we used <code>unlift</code> at the type:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">unlift ::</span> (<span class="dt">Elt</span> a, <span class="dt">Elt</span> b) <span class="ot">=&gt;</span> <span class="dt">Exp</span> (a, b) <span class="ot">-&gt;</span> (<span class="dt">Exp</span> a, <span class="dt">Exp</span> b)</code></pre></div>
+<p>Notice how <code>unlift</code> converts an <code>Exp</code> pair into a pair of components in <code>Exp</code>. Conversely, when constructing the result we use its dual <code>lift</code> at the following type in order to combine the two components back into an <code>Exp</code> pair:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">lift ::</span> (<span class="dt">Exp</span> a, <span class="dt">Exp</span> b) <span class="ot">=&gt;</span> (<span class="dt">Exp</span> a, <span class="dt">Exp</span> b) <span class="ot">-&gt;</span> <span class="dt">Exp</span> (a, b)</code></pre></div>
+<div class="alert alert-info" role="alert">
+<p><strong>Heads up!</strong> The use of <code>lift</code> and <code>unlift</code> is probably the most common source of type errors when using Accelerate. Since these are very general functions for constructing and deconstructing product types, GHC often has trouble determining what the type of an expression should be. If you run into trouble, try adding an explicit type signature to fix the type.</p>
+</div>
+<p>In order to test whether the point has diverged yet, we need to compute the magnitude of the complex number. We know that <span class="math inline">\(|z|\)</span> will definitely diverge if it is greater than 2. The magnitude of a complex number <span class="math inline">\((x + i y)\)</span> is given by <span class="math inline">\(\sqrt{x^2 + y^2}\)</span>, so we can simplify the conditional by squaring both sides and changing the divergence test to <span class="math inline">\(x^2 + y^2 \gt 4\)</span>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">dot ::</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> <span class="dt">Float</span>
+dot (unlift <span class="ot">-&gt;</span> x <span class="fu">:+</span> y) <span class="fu">=</span> x<span class="fu">*</span>x <span class="fu">+</span> y<span class="fu">*</span>y</code></pre></div>
+<p>Notice how we used <code>unlift</code> here to access the components of the complex number, and in this instance it had the type:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">unlift ::</span> <span class="dt">Elt</span> a <span class="ot">=&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> a) <span class="ot">-&gt;</span> <span class="dt">Complex</span> (<span class="dt">Exp</span> a)</code></pre></div>
+<p>To determine whether an individual point <span class="math inline">\(c\)</span> is in the set, we use the scalar iteration operation <code>while</code> to keep applying the <code>step</code> function, either until the point diverges or some maximum iteration limit is reached.</p>
+<p>Once we know how to compute an individual point, we can use the array operation <code>generate</code> to perform the computation at every point in the complex plane in parallel. Our final Mandelbrot function is:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">mandelbrot
+<span class="ot">    ::</span> <span class="dt">Int</span>                  <span class="co">-- ^ image width</span>
+    <span class="ot">-&gt;</span> <span class="dt">Int</span>                  <span class="co">-- ^ image height</span>
+    <span class="ot">-&gt;</span> <span class="dt">Int</span>                  <span class="co">-- ^ iteration limit</span>
+    <span class="ot">-&gt;</span> <span class="dt">Complex</span> <span class="dt">Float</span>        <span class="co">-- ^ view centre</span>
+    <span class="ot">-&gt;</span> <span class="dt">Float</span>                <span class="co">-- ^ view width</span>
+    <span class="ot">-&gt;</span> <span class="dt">Acc</span> (<span class="dt">Array</span> <span class="dt">DIM2</span> (<span class="dt">Complex</span> <span class="dt">Float</span>, <span class="dt">Int</span>))
+mandelbrot screenX screenY depth (x0 <span class="fu">:+</span> y0) width <span class="fu">=</span>
+  A.generate (A.constant (<span class="dt">Z</span> <span class="fu">:.</span> screenY <span class="fu">:.</span> screenX))
+             (\ix <span class="ot">-&gt;</span> <span class="kw">let</span> z0 <span class="fu">=</span> complexOfPixel ix
+                         zn <span class="fu">=</span> while (\zi <span class="ot">-&gt;</span> snd zi <span class="fu">&lt;</span> constant depth <span class="fu">&amp;&amp;</span> dot (fst zi) <span class="fu">&lt;</span> <span class="fl">4.0</span>)
+                                    (\zi <span class="ot">-&gt;</span> step z0 zi)
+                                    (lift (z0, constant <span class="dv">0</span>))
+                     <span class="kw">in</span>
+                     zn)
+  <span class="kw">where</span>
+<span class="ot">    complexOfPixel ::</span> <span class="dt">Exp</span> <span class="dt">DIM2</span> <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>)
+    complexOfPixel (unlift <span class="ot">-&gt;</span> <span class="dt">Z</span> <span class="fu">:.</span> y <span class="fu">:.</span> x) <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
+<p>The omitted function <code>complexOfPixel</code> is used to convert an array index into the corresponding position in the complex plane. See the full code listing below for its implementation.</p>
+<h3 id="generating-an-image">Generating an image</h3>
+<p>In order to generate a beautiful representation of the points in the Mandelbrot set, we need to convert the number of iterations <span class="math inline">\(n\)</span> before the point diverged into a colour. There are many ways colour schemes we could use; for the image shown above, we map the iteration count into the following colour scheme:</p>
+<p><img class="img-responsive center-block" src="/media/mandelbrot/ultra.jpg"></p>
+<p>The <code>colour-accelerate</code> library provides data types and operations for working with several colour spaces in Accelerate. Standard RGB triples are defined in the following module:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate.Data.Colour.RGB</span></code></pre></div>
+<p>Our colour scheme consists of five control points. Given a number <span class="math inline">\(p\)</span> between 0 and 1.0, the following function linearly interpolates between the two surrounding control points to produce a smooth gradient.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">ultra ::</span> <span class="dt">Exp</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Exp</span> <span class="dt">Colour</span>
+ultra p <span class="fu">=</span>
+  <span class="kw">if</span> p <span class="fu">&lt;=</span> p1 <span class="kw">then</span> blend (p<span class="fu">-</span>p0) (p1<span class="fu">-</span>p) c1 c0 <span class="kw">else</span>
+  <span class="kw">if</span> p <span class="fu">&lt;=</span> p2 <span class="kw">then</span> blend (p<span class="fu">-</span>p1) (p2<span class="fu">-</span>p) c2 c1 <span class="kw">else</span>
+  <span class="kw">if</span> p <span class="fu">&lt;=</span> p3 <span class="kw">then</span> blend (p<span class="fu">-</span>p2) (p3<span class="fu">-</span>p) c3 c2 <span class="kw">else</span>
+  <span class="kw">if</span> p <span class="fu">&lt;=</span> p4 <span class="kw">then</span> blend (p<span class="fu">-</span>p3) (p4<span class="fu">-</span>p) c4 c3 <span class="kw">else</span>
+                  blend (p<span class="fu">-</span>p4) (p5<span class="fu">-</span>p) c5 c4
+  <span class="kw">where</span>
+    p0 <span class="fu">=</span> <span class="fl">0.0</span>     ; c0 <span class="fu">=</span> rgb8 <span class="dv">0</span>   <span class="dv">7</span>   <span class="dv">100</span>
+    p1 <span class="fu">=</span> <span class="fl">0.16</span>    ; c1 <span class="fu">=</span> rgb8 <span class="dv">32</span>  <span class="dv">107</span> <span class="dv">203</span>
+    p2 <span class="fu">=</span> <span class="fl">0.42</span>    ; c2 <span class="fu">=</span> rgb8 <span class="dv">237</span> <span class="dv">255</span> <span class="dv">255</span>
+    p3 <span class="fu">=</span> <span class="fl">0.6425</span>  ; c3 <span class="fu">=</span> rgb8 <span class="dv">255</span> <span class="dv">170</span> <span class="dv">0</span>
+    p4 <span class="fu">=</span> <span class="fl">0.8575</span>  ; c4 <span class="fu">=</span> rgb8 <span class="dv">0</span>   <span class="dv">2</span>   <span class="dv">0</span>
+    p5 <span class="fu">=</span> <span class="fl">1.0</span>     ; c5 <span class="fu">=</span> c0</code></pre></div>
+<p>Note that we have used the <code>RebindableSyntax</code> extension here so that we can reuse Haskell's usual if-then-else syntax.</p>
+<p>We can use this function to assign a colour to each point in the complex plane, and then use the <code>accelerate-io</code> package to write the resulting array of colours to a BMP image file:</p>
+<pre><code>writeImageToBMP :: FilePath -&gt; Array DIM2 RGBA32 -&gt; IO ()</code></pre>
+<p>We have omitted a few functions required to glue these operations together, but the complete code listing is shown below.</p>
+<h2 id="code">Code</h2>
+<p>The complete code listing for generating the Mandelbrot set image shown at the top of the page. To compile the program:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">ghc</span> -O2 -threaded mandelbrot.hs</code></pre></div>
+<p>and execute it in parallel on the CPU:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">./mandelbrot</span> +RTS -N -RTS</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE RebindableSyntax    #-}</span>
+<span class="ot">{-# LANGUAGE ScopedTypeVariables #-}</span>
+<span class="ot">{-# LANGUAGE TypeOperators       #-}</span>
+<span class="ot">{-# LANGUAGE ViewPatterns        #-}</span>
+
+<span class="kw">import </span><span class="dt">Data.Array.Accelerate</span>                              <span class="kw">as</span> <span class="dt">A</span>
+<span class="kw">import </span><span class="dt">Data.Array.Accelerate.IO</span>                           <span class="kw">as</span> <span class="dt">A</span>
+<span class="kw">import </span><span class="dt">Data.Array.Accelerate.Data.Complex</span>                 <span class="kw">as</span> <span class="dt">A</span>
+<span class="kw">import </span><span class="dt">Data.Array.Accelerate.Data.Colour.RGB</span>              <span class="kw">as</span> <span class="dt">A</span>
+<span class="kw">import </span><span class="dt">Data.Array.Accelerate.Data.Colour.Names</span>            <span class="kw">as</span> <span class="dt">A</span>
+
+<span class="kw">import </span><span class="dt">Data.Array.Accelerate.LLVM.Native</span>                  <span class="kw">as</span> <span class="dt">CPU</span>
+<span class="co">-- import Data.Array.Accelerate.LLVM.PTX                     as PTX</span>
+
+<span class="kw">import qualified</span> <span class="dt">Prelude</span>                                  <span class="kw">as</span> <span class="dt">P</span>
+
+
+mandelbrot
+<span class="ot">    ::</span> <span class="dt">Int</span>                  <span class="co">-- ^ image width</span>
+    <span class="ot">-&gt;</span> <span class="dt">Int</span>                  <span class="co">-- ^ image height</span>
+    <span class="ot">-&gt;</span> <span class="dt">Int</span>                  <span class="co">-- ^ iteration limit</span>
+    <span class="ot">-&gt;</span> <span class="dt">Complex</span> <span class="dt">Float</span>        <span class="co">-- ^ view centre</span>
+    <span class="ot">-&gt;</span> <span class="dt">Float</span>                <span class="co">-- ^ view width</span>
+    <span class="ot">-&gt;</span> <span class="dt">Acc</span> (<span class="dt">Array</span> <span class="dt">DIM2</span> (<span class="dt">Complex</span> <span class="dt">Float</span>, <span class="dt">Int</span>))
+mandelbrot screenX screenY depth (x0 <span class="fu">:+</span> y0) width <span class="fu">=</span>
+  A.generate (A.constant (<span class="dt">Z</span> <span class="fu">:.</span> screenY <span class="fu">:.</span> screenX))
+             (\ix <span class="ot">-&gt;</span> <span class="kw">let</span> z0 <span class="fu">=</span> complexOfPixel ix
+                         zn <span class="fu">=</span> while (\zi <span class="ot">-&gt;</span> snd zi <span class="fu">&lt;</span> constant depth <span class="fu">&amp;&amp;</span> dot (fst zi) <span class="fu">&lt;</span> <span class="fl">4.0</span>)
+                                    (\zi <span class="ot">-&gt;</span> step z0 zi)
+                                    (lift (z0, constant <span class="dv">0</span>))
+                     <span class="kw">in</span>
+                     zn)
+  <span class="kw">where</span>
+    <span class="co">-- Convert the given array index, representing a pixel in the final image,</span>
+    <span class="co">-- into the corresponding point on the complex plane.</span>
+    <span class="co">--</span>
+<span class="ot">    complexOfPixel ::</span> <span class="dt">Exp</span> <span class="dt">DIM2</span> <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>)
+    complexOfPixel (unlift <span class="ot">-&gt;</span> <span class="dt">Z</span> <span class="fu">:.</span> y <span class="fu">:.</span> x) <span class="fu">=</span>
+      <span class="kw">let</span>
+          height <span class="fu">=</span> P.fromIntegral screenY <span class="fu">/</span> P.fromIntegral screenX <span class="fu">*</span> width
+          xmin   <span class="fu">=</span> x0 <span class="fu">-</span> width  <span class="fu">/</span> <span class="dv">2</span>
+          ymin   <span class="fu">=</span> y0 <span class="fu">-</span> height <span class="fu">/</span> <span class="dv">2</span>
+          <span class="co">--</span>
+          re     <span class="fu">=</span> constant xmin <span class="fu">+</span> (fromIntegral x <span class="fu">*</span> constant width)  <span class="fu">/</span> constant (P.fromIntegral screenX)
+          im     <span class="fu">=</span> constant ymin <span class="fu">+</span> (fromIntegral y <span class="fu">*</span> constant height) <span class="fu">/</span> constant (P.fromIntegral screenY)
+      <span class="kw">in</span>
+      lift (re <span class="fu">:+</span> im)
+
+    <span class="co">-- Divergence condition</span>
+    <span class="co">--</span>
+<span class="ot">    dot ::</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> <span class="dt">Float</span>
+    dot (unlift <span class="ot">-&gt;</span> x <span class="fu">:+</span> y) <span class="fu">=</span> x<span class="fu">*</span>x <span class="fu">+</span> y<span class="fu">*</span>y
+
+    <span class="co">-- Take a single step of the recurrence relation</span>
+    <span class="co">--</span>
+<span class="ot">    step ::</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>, <span class="dt">Int</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>, <span class="dt">Int</span>)
+    step c (unlift <span class="ot">-&gt;</span> (z, i)) <span class="fu">=</span> lift (next c z, i <span class="fu">+</span> constant <span class="dv">1</span>)
+
+<span class="ot">    next ::</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>)
+    next c z <span class="fu">=</span> c <span class="fu">+</span> z <span class="fu">*</span> z
+
+
+<span class="co">-- Convert the iteration count on escape to a colour.</span>
+<span class="co">--</span>
+escapeToColour
+<span class="ot">    ::</span> <span class="dt">Exp</span> <span class="dt">Int</span>
+    <span class="ot">-&gt;</span> <span class="dt">Exp</span> (<span class="dt">Complex</span> <span class="dt">Float</span>, <span class="dt">Int</span>)
+    <span class="ot">-&gt;</span> <span class="dt">Exp</span> <span class="dt">Colour</span>
+escapeToColour depth (unlift <span class="ot">-&gt;</span> (z, n)) <span class="fu">=</span>
+  <span class="kw">if</span> depth <span class="fu">==</span> n
+    <span class="kw">then</span> black
+    <span class="kw">else</span> ultra (toFloating ix <span class="fu">/</span> toFloating points)
+      <span class="kw">where</span>
+        mag     <span class="fu">=</span> magnitude z
+        smooth  <span class="fu">=</span> logBase <span class="dv">2</span> (logBase <span class="dv">2</span> mag)
+        ix      <span class="fu">=</span> truncate (sqrt (toFloating n <span class="fu">+</span> <span class="dv">1</span> <span class="fu">-</span> smooth) <span class="fu">*</span> scale <span class="fu">+</span> shift) <span class="ot">`mod`</span> points
+        <span class="co">--</span>
+        scale   <span class="fu">=</span> <span class="dv">256</span>
+        shift   <span class="fu">=</span> <span class="dv">1664</span>
+        points  <span class="fu">=</span> <span class="dv">2048</span><span class="ot"> ::</span> <span class="dt">Exp</span> <span class="dt">Int</span>
+
+<span class="co">-- Pick a nice colour, given a number in the range [0,1].</span>
+<span class="co">--</span>
+<span class="ot">ultra ::</span> <span class="dt">Exp</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Exp</span> <span class="dt">Colour</span>
+ultra p <span class="fu">=</span>
+  <span class="kw">if</span> p <span class="fu">&lt;=</span> p1 <span class="kw">then</span> blend (p<span class="fu">-</span>p0) (p1<span class="fu">-</span>p) c1 c0 <span class="kw">else</span>
+  <span class="kw">if</span> p <span class="fu">&lt;=</span> p2 <span class="kw">then</span> blend (p<span class="fu">-</span>p1) (p2<span class="fu">-</span>p) c2 c1 <span class="kw">else</span>
+  <span class="kw">if</span> p <span class="fu">&lt;=</span> p3 <span class="kw">then</span> blend (p<span class="fu">-</span>p2) (p3<span class="fu">-</span>p) c3 c2 <span class="kw">else</span>
+  <span class="kw">if</span> p <span class="fu">&lt;=</span> p4 <span class="kw">then</span> blend (p<span class="fu">-</span>p3) (p4<span class="fu">-</span>p) c4 c3 <span class="kw">else</span>
+                  blend (p<span class="fu">-</span>p4) (p5<span class="fu">-</span>p) c5 c4
+  <span class="kw">where</span>
+    p0 <span class="fu">=</span> <span class="fl">0.0</span>     ; c0 <span class="fu">=</span> rgb8 <span class="dv">0</span>   <span class="dv">7</span>   <span class="dv">100</span>
+    p1 <span class="fu">=</span> <span class="fl">0.16</span>    ; c1 <span class="fu">=</span> rgb8 <span class="dv">32</span>  <span class="dv">107</span> <span class="dv">203</span>
+    p2 <span class="fu">=</span> <span class="fl">0.42</span>    ; c2 <span class="fu">=</span> rgb8 <span class="dv">237</span> <span class="dv">255</span> <span class="dv">255</span>
+    p3 <span class="fu">=</span> <span class="fl">0.6425</span>  ; c3 <span class="fu">=</span> rgb8 <span class="dv">255</span> <span class="dv">170</span> <span class="dv">0</span>
+    p4 <span class="fu">=</span> <span class="fl">0.8575</span>  ; c4 <span class="fu">=</span> rgb8 <span class="dv">0</span>   <span class="dv">2</span>   <span class="dv">0</span>
+    p5 <span class="fu">=</span> <span class="fl">1.0</span>     ; c5 <span class="fu">=</span> c0
+
+
+<span class="ot">main ::</span> <span class="dt">P.IO</span> ()
+main <span class="fu">=</span>
+  <span class="kw">let</span> img <span class="fu">=</span> A.map packRGB
+          <span class="fu">$</span> A.map (escapeToColour <span class="dv">255</span>)
+          <span class="fu">$</span> mandelbrot <span class="dv">800</span> <span class="dv">600</span> <span class="dv">255</span> ((<span class="fu">-</span><span class="fl">0.7</span>) <span class="fu">:+</span> <span class="dv">0</span>) <span class="fl">3.067</span>
+  <span class="kw">in</span>
+  writeImageToBMP <span class="st">&quot;mandelbrot.bmp&quot;</span> (run img)</code></pre></div>
+                  </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container text-center">
+        <p class="text-muted">
+        <a href="https://github.com/AccelerateHS/accelerate">GitHub Project</a> &middot;
+        <a href="https://github.com/AccelerateHS/accelerate/issues">Issue Tracker</a> &middot;
+        <a href="http://groups.google.com/group/accelerate-haskell">Mailing List</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+

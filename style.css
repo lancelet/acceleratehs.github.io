@@ -90,6 +90,15 @@ ol ol > li:last-child {
   margin-bottom: 10px;
 }
 
+.btn {
+  font-family: 'Raleway';
+  font-weight: 600;
+}
+
+.btn-lg {
+  font-weight: 800;
+}
+
 /* missing from bootstrap-3.7 */
 .embed-responsive-1by1 {
   padding-bottom: 100%;

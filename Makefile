@@ -1,6 +1,6 @@
 VPATH		:= content
 PANDOC		:= pandoc
-PANDOC_FLAGS	:= --toc --toc-depth=3
+PANDOC_FLAGS	:= --toc --toc-depth=3 --mathjax
 TEMPLATE 	:= template.html
 MARKDOWN	:= $(shell find content -name "*.md")
 HTML		:= $(patsubst content/%.md,%.html,$(MARKDOWN))
