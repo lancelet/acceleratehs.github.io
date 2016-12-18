@@ -3,7 +3,7 @@ section: Examples
 nav-examples: True
 ---
 
-# Mandelbrot
+# Mandelbrot set
 
 The [Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set) is generated
 by sampling complex numbers $c$ in the complex plane, and determining whether
@@ -24,9 +24,7 @@ explain how to create in Accelerate.
 <img class="img-responsive center-block" src="/media/mandelbrot/mandelbrot.jpg" alt="Mandelbrot set">
 
 
-## Tutorial
-
-### Computing the set
+## Escape time algorithm
 
 Complex numbers are available in Accelerate by importing the following module:
 ```haskell
@@ -97,26 +95,40 @@ and in this instance it had the type:
 ```haskell
 unlift :: Elt a => Exp (Complex a) -> Complex (Exp a)
 ```
+Note that our divergence test $|z_n| \gt 4$ defines the _boundary_ of the
+Mandelbrot set, but for points near the boundary it is also interesting to see
+how quickly that point diverges, so we will leave this limit as a configurable
+parameter `radius`. This also allows us to create more aesthetically pleasing
+images, which we will return to later.
 
 To determine whether an individual point $c$ is in the set, we use the scalar
 iteration operation `while` to keep applying the `step` function, either until
 the point diverges or some maximum iteration limit is reached.
+```haskell
+while :: Elt e
+      => (Exp e -> Exp Bool)  -- ^ keep looping while 'True'
+      -> (Exp e -> Exp e)     -- ^ body of the loop
+      -> Exp e                -- ^ initial value
+      -> Exp e
+```
 
 Once we know how to compute an individual point, we can use the array operation
 `generate` to perform the computation at every point in the complex plane in
 parallel. Our final Mandelbrot function is:
 ```haskell
 mandelbrot
-    :: Int                  -- ^ image width
-    -> Int                  -- ^ image height
-    -> Int                  -- ^ iteration limit
-    -> Complex Float        -- ^ view centre
-    -> Float                -- ^ view width
+    :: Int                    -- ^ image width
+    -> Int                    -- ^ image height
+    -> Int                    -- ^ iteration limit
+    -> Float                  -- ^ divergence radius
+    -> Complex Float          -- ^ view centre
+    -> Float                  -- ^ view width
     -> Acc (Array DIM2 (Complex Float, Int))
-mandelbrot screenX screenY depth (x0 :+ y0) width =
+mandelbrot screenX screenY depth radius (x0 :+ y0) width =
   A.generate (A.constant (Z :. screenY :. screenX))
              (\ix -> let z0 = complexOfPixel ix
-                         zn = while (\zi -> snd zi < constant depth && dot (fst zi) < 4.0)
+                         zn = while (\zi -> snd zi       < constant depth
+                                         && dot (fst zi) < constant radius)
                                     (\zi -> step z0 zi)
                                     (lift (z0, constant 0))
                      in
@@ -125,19 +137,16 @@ mandelbrot screenX screenY depth (x0 :+ y0) width =
     complexOfPixel :: Exp DIM2 -> Exp (Complex Float)
     complexOfPixel (unlift -> Z :. y :. x) = ...
 ```
-The omitted function `complexOfPixel` is used to convert an array index into the
-corresponding position in the complex plane. See the full code listing below for
-its implementation.
+The omitted function `complexOfPixel` is used to convert each array index into
+the corresponding position in the complex plane. See the full code listing below
+for its implementation.
 
 
-### Generating an image
+## Smooth colouring
 
 In order to generate a beautiful representation of the points in the Mandelbrot
 set, we need to convert the number of iterations $n$ before the point diverged
-into a colour. There are many ways colour schemes we could use; for the image
-shown above, we map the iteration count into the following colour scheme:
-
-<img class="img-responsive center-block" src="/media/mandelbrot/ultra.jpg">
+into a colour.
 
 The `colour-accelerate` library provides data types and operations for working
 with several colour spaces in Accelerate. Standard RGB triples are defined in
@@ -146,44 +155,125 @@ the following module:
 import Data.Array.Accelerate.Data.Colour.RGB
 ```
 
-Our colour scheme consists of five control points. Given a number $p$ between 0
-and 1.0, the following function linearly interpolates between the two
-surrounding control points to produce a smooth gradient.
+There are many ways colour schemes we could use; for the image shown above, we
+use a colour scheme with five control points:
+```haskell
+p0 = 0.0     ; c0 = rgb8 0   7   100
+p1 = 0.16    ; c1 = rgb8 32  107 203
+p2 = 0.42    ; c2 = rgb8 237 255 255
+p3 = 0.6425  ; c3 = rgb8 255 170 0
+p4 = 0.8575  ; c4 = rgb8 0   2   0
+```
+where the positions $p$ are in the range $[0,1]$ and the corresponding colour is
+given as RGB components from 0 to 255.
+
+To calculate the colour at any point we can find the control points which lie to
+either side of that point, and [linearly
+interpolate](https://en.wikipedia.org/wiki/Linear_interpolation) between the two
+corresponding colour values. However, this does not produce a smooth gradient,
+so instead we will use [monotone cubic
+interpolation](https://en.wikipedia.org/wiki/Monotone_cubic_interpolation). You
+can see the difference between the two methods below:
+
+<img class="img-responsive center-block" src="/media/mandelbrot/ultra-linear.jpg">
+
+<img class="img-responsive center-block" src="/media/mandelbrot/ultra-cubic.jpg">
+
+With some pre-processing to determine appropriate values $m$ necessary for the
+cubic interpolation, the following function will generate a smooth function
+given a number $p$ between $0$ and $1.0$.
 ```haskell
 ultra :: Exp Float -> Exp Colour
 ultra p =
-  if p <= p1 then blend (p-p0) (p1-p) c1 c0 else
-  if p <= p2 then blend (p-p1) (p2-p) c2 c1 else
-  if p <= p3 then blend (p-p2) (p3-p) c3 c2 else
-  if p <= p4 then blend (p-p3) (p4-p) c4 c3 else
-                  blend (p-p4) (p5-p) c5 c4
+  if p <= p1 then interp (p0,p1) (c0,c1) (m0,m1) p else
+  if p <= p2 then interp (p1,p2) (c1,c2) (m1,m2) p else
+  if p <= p3 then interp (p2,p3) (c2,c3) (m2,m3) p else
+  if p <= p4 then interp (p3,p4) (c3,c4) (m3,m4) p else
+                  interp (p4,p5) (c4,c5) (m4,m5) p
   where
-    p0 = 0.0     ; c0 = rgb8 0   7   100
-    p1 = 0.16    ; c1 = rgb8 32  107 203
-    p2 = 0.42    ; c2 = rgb8 237 255 255
-    p3 = 0.6425  ; c3 = rgb8 255 170 0
-    p4 = 0.8575  ; c4 = rgb8 0   2   0
-    p5 = 1.0     ; c5 = c0
+    interp (x0,x1) (y0,y1) ((mr0,mg0,mb0),(mr1,mg1,mb1)) x =
+      let
+          RGB r0 g0 b0 = unlift y0 :: RGB (Exp Float)
+          RGB r1 g1 b1 = unlift y1 :: RGB (Exp Float)
+      in
+      rgb (cubic (x0,x1) (r0,r1) (mr0,mr1) x)
+          (cubic (x0,x1) (g0,g1) (mg0,mg1) x)
+          (cubic (x0,x1) (b0,b1) (mb0,mb1) x)
 ```
-Note that we have used the `RebindableSyntax` extension here so that we can
-reuse Haskell's usual if-then-else syntax.
+where the omitted function `cubic` computes the [Cubic Hemite
+spline](https://en.wikipedia.org/wiki/Cubic_Hermite_spline).
 
-We can use this function to assign a colour to each point in the complex plane,
-and then use the `accelerate-io` package to write the resulting array of colours
-to a BMP image file:
+Note that in the function `ultra` we used the `RebindableSyntax` extension so
+that we could reuse Haskell's standard if-then-else syntax. This is just
+syntactic sugar which inserts the Accelerate scalar infix conditional operator:
+```haskell
+(?) :: Elt t => Exp Bool -> (Exp t, Exp t) -> Exp t
 ```
+
+Finally, we can assign a colour to each point on the complex plane given the
+iteration count at which that point diverged. In order to avoid obvious "bands"
+of colour, we use the following continuous colouring scheme:
+```haskell
+escapeToColour
+    :: Int
+    -> Exp (Complex Float, Int)
+    -> Exp Colour
+escapeToColour limit (unlift -> (z, n)) =
+  if n == constant limit
+    then black
+    else ultra (toFloating ix / toFloating points)
+      where
+        mag     = magnitude z
+        smooth  = logBase 2 (logBase 2 mag)
+        ix      = truncate (sqrt (toFloating n + 1 - smooth) * scale + shift) `mod` points
+        --
+        scale   = 256
+        shift   = 1664
+        points  = 2048 :: Exp Int
+```
+where any point which reached the iteration limit is immediately set to `black`.
+The `colour-accelerate` package includes several predefined colours in the
+module:
+```haskell
+import Data.Array.Accelerate.Data.Colour.Names
+```
+
+## Saving images to disk
+
+After we compute the image, we can use the following function from the
+`accelerate-io` package to save the data to a BMP image file:
+```haskell
 writeImageToBMP :: FilePath -> Array DIM2 RGBA32 -> IO ()
 ```
+together with the function `packRGB` from `colour-accelerate` to generate the
+necessary packed `RGBA32` representation, where each colour component is encoded
+as an 8-bit value and packed together into a single 32-bit word:
+```haskell
+packRGB :: Exp Colour -> Exp RGBA32
+```
 
-We have omitted a few functions required to glue these operations together, but
-the complete code listing is shown below.
+To generate the complete Mandelbrot image we apply each of the above steps in
+sequence, which Accelerate will optimise and fuse into a single loop:
+```haskell
+img = map packRGB
+    $ map (escapeToColour limit)
+    $ mandelbrot width height limit radius ((-0.7) :+ 0) 3.067
+```
+The complete code listing is shown below.
+
+## Next steps
+
+The `accelerate-examples` package includes an implementation of the Mandelbrot
+program shown here, with interactive controls allowing you to explore the set in
+real time.
+
 
 ## Code
 
-The complete code listing for generating the Mandelbrot set image shown at the
-top of the page. To compile the program:
+The complete code for generating the Mandelbrot set image shown at the top of
+the page is below. To compile the program:
 ```sh
-ghc -O2 -threaded mandelbrot.hs
+ghc -O2 -threaded Mandelbrot.hs
 ```
 and execute it in parallel on the CPU:
 ```sh
@@ -191,6 +281,7 @@ and execute it in parallel on the CPU:
 ```
 
 ```haskell
+{-# LANGUAGE FlexibleContexts    #-}
 {-# LANGUAGE RebindableSyntax    #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 {-# LANGUAGE TypeOperators       #-}
@@ -207,18 +298,19 @@ import Data.Array.Accelerate.LLVM.Native                  as CPU
 
 import qualified Prelude                                  as P
 
-
 mandelbrot
     :: Int                  -- ^ image width
     -> Int                  -- ^ image height
     -> Int                  -- ^ iteration limit
+    -> Float                -- ^ divergence radius
     -> Complex Float        -- ^ view centre
     -> Float                -- ^ view width
     -> Acc (Array DIM2 (Complex Float, Int))
-mandelbrot screenX screenY depth (x0 :+ y0) width =
+mandelbrot screenX screenY limit radius (x0 :+ y0) width =
   A.generate (A.constant (Z :. screenY :. screenX))
              (\ix -> let z0 = complexOfPixel ix
-                         zn = while (\zi -> snd zi < constant depth && dot (fst zi) < 4.0)
+                         zn = while (\zi -> snd zi       < constant limit
+                                         && dot (fst zi) < constant radius)
                                     (\zi -> step z0 zi)
                                     (lift (z0, constant 0))
                      in
@@ -256,11 +348,11 @@ mandelbrot screenX screenY depth (x0 :+ y0) width =
 -- Convert the iteration count on escape to a colour.
 --
 escapeToColour
-    :: Exp Int
+    :: Int
     -> Exp (Complex Float, Int)
     -> Exp Colour
-escapeToColour depth (unlift -> (z, n)) =
-  if depth == n
+escapeToColour limit (unlift -> (z, n)) =
+  if n == constant limit
     then black
     else ultra (toFloating ix / toFloating points)
       where
@@ -276,25 +368,68 @@ escapeToColour depth (unlift -> (z, n)) =
 --
 ultra :: Exp Float -> Exp Colour
 ultra p =
-  if p <= p1 then blend (p-p0) (p1-p) c1 c0 else
-  if p <= p2 then blend (p-p1) (p2-p) c2 c1 else
-  if p <= p3 then blend (p-p2) (p3-p) c3 c2 else
-  if p <= p4 then blend (p-p3) (p4-p) c4 c3 else
-                  blend (p-p4) (p5-p) c5 c4
+  if p <= p1 then interp (p0,p1) (c0,c1) (m0,m1) p else
+  if p <= p2 then interp (p1,p2) (c1,c2) (m1,m2) p else
+  if p <= p3 then interp (p2,p3) (c2,c3) (m2,m3) p else
+  if p <= p4 then interp (p3,p4) (c3,c4) (m3,m4) p else
+                  interp (p4,p5) (c4,c5) (m4,m5) p
   where
-    p0 = 0.0     ; c0 = rgb8 0   7   100
-    p1 = 0.16    ; c1 = rgb8 32  107 203
-    p2 = 0.42    ; c2 = rgb8 237 255 255
-    p3 = 0.6425  ; c3 = rgb8 255 170 0
-    p4 = 0.8575  ; c4 = rgb8 0   2   0
-    p5 = 1.0     ; c5 = c0
+    p0 = 0.0     ; c0 = rgb8 0   7   100  ; m0 = (0.7843138, 2.4509804,  2.52451)
+    p1 = 0.16    ; c1 = rgb8 32  107 203  ; m1 = (1.93816,   2.341629,   1.6544118)
+    p2 = 0.42    ; c2 = rgb8 237 255 255  ; m2 = (1.7046283, 0.0,        0.0)
+    p3 = 0.6425  ; c3 = rgb8 255 170 0    ; m3 = (0.0,       -2.2812111, 0.0)
+    p4 = 0.8575  ; c4 = rgb8 0   2   0    ; m4 = (0.0,       0.0,        0.0)
+    p5 = 1.0     ; c5 = c0                ; m5 = m0
+
+    -- interpolate each of the RGB components
+    interp (x0,x1) (y0,y1) ((mr0,mg0,mb0),(mr1,mg1,mb1)) x =
+      let
+          RGB r0 g0 b0 = unlift y0 :: RGB (Exp Float)
+          RGB r1 g1 b1 = unlift y1 :: RGB (Exp Float)
+      in
+      rgb (cubic (x0,x1) (r0,r1) (mr0,mr1) x)
+          (cubic (x0,x1) (g0,g1) (mg0,mg1) x)
+          (cubic (x0,x1) (b0,b1) (mb0,mb1) x)
+
+-- cubic interpolation
+cubic :: (Exp Float, Exp Float)
+      -> (Exp Float, Exp Float)
+      -> (Exp Float, Exp Float)
+      -> Exp Float
+      -> Exp Float
+cubic (x0,x1) (y0,y1) (m0,m1) x =
+  let
+      -- basis functions for cubic hermite spine
+      h_00 = (1 + 2*t) * (1 - t) ** 2
+      h_10 = t * (1 - t) ** 2
+      h_01 = t ** 2 * (3 - 2 * t)
+      h_11 = t ** 2 * (t - 1)
+      --
+      h    = x1 - x0
+      t    = (x - x0) / h
+  in
+  y0 * h_00 + h * m0 * h_10 + y1 * h_01 + h * m1 * h_11
+
+-- linear interpolation
+linear :: (Exp Float, Exp Float)
+       -> (Exp Float, Exp Float)
+       -> Exp Float
+       -> Exp Float
+linear (x0,x1) (y0,y1) x =
+  y0 + (x - x0) * (y1 - y0) / (x1 - x0)
 
 
 main :: P.IO ()
 main =
-  let img = A.map packRGB
-          $ A.map (escapeToColour 255)
-          $ mandelbrot 800 600 255 ((-0.7) :+ 0) 3.067
+  let
+      width   = 800
+      height  = 600
+      limit   = 1000
+      radius  = 256
+      --
+      img = A.map packRGB
+          $ A.map (escapeToColour limit)
+          $ mandelbrot width height limit radius ((-0.7) :+ 0) 3.067
   in
   writeImageToBMP "mandelbrot.bmp" (run img)
 ```
