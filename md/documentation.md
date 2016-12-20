@@ -26,8 +26,7 @@ design and implementation of Accelerate can be found in our
 
   1. Users guide
 
-      1. foo
-      1. bar
+      1. The _Accelerate_ language
 
 
 ## External resources
