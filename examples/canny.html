@@ -54,14 +54,23 @@
             <!--   <li class="nav-header" id="toctitle">Table of Contents</il> -->
             <!-- </ul> -->
             <ul>
-            <li><a href="#raytracer">Raytracer</a></li>
+            <li><a href="#canny-edge-detector">Canny edge detector</a></li>
             </ul>
           </div>
                 <div class="container">
-                    <h1 id="raytracer">Raytracer</h1>
-<p>Implementation of a simple <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">ray tracer</a> in Accelerate. The program supports multiple reflections, but is otherwise quite basic. This simplicity however means the GUI program can be interactive.</p>
-<div class="embed-responsive embed-responsive-4by3">
-<p><video controls loop class="embed-responsive-item" poster="/media/ray.jpg"> <source src="/media/ray.mp4" type="video/mp4"> </video></p>
+                    <h1 id="canny-edge-detector">Canny edge detector</h1>
+<p>Implementation of the <a href="https://en.wikipedia.org/wiki/Canny_edge_detector">canny edge detector</a>. The majority of the algorithm is data-parallel and implemented in Accelerate, with the final (sequential) phase implemented using <a href="https://hackage.haskell.org/package/repa">repa</a>. Uses the <a href="https://hackage.haskell.org/package/accelerate-io">accelerate-io</a> package to efficiently convert between the Accelerate and Repa array representations.</p>
+<div class="col-md-6">
+<img class="img-responsive center-block" src="/media/lena.bmp" alt="Original image">
+<p class="text-center text-muted">
+Original image
+</p>
+</div>
+<div class="col-md-6">
+<img class="img-responsive center-block" src="/media/canny.bmp" alt="Result">
+<p class="text-center text-muted">
+Result
+</p>
 </div>
                   </div>
       </div>

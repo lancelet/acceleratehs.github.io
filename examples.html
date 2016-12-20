@@ -92,118 +92,54 @@
             <!-- </ul> -->
             <ul>
             <li><a href="#examples">Examples</a><ul>
-            <li><a href="#accelerate-examples">accelerate-examples</a><ul>
-            <li><a href="#accelerate-nofib">accelerate-nofib</a></li>
-            <li><a href="#accelerate-canny">accelerate-canny</a></li>
-            <li><a href="#accelerate-fluid">accelerate-fluid</a></li>
-            <li><a href="#accelerate-hashcat">accelerate-hashcat</a></li>
-            <li><a href="#accelerate-kmeans">accelerate-kmeans</a></li>
-            <li><a href="#accelerate-mandelbrot">accelerate-mandelbrot</a></li>
-            <li><a href="#accelerate-nbody">accelerate-nbody</a></li>
-            <li><a href="#accelerate-pagerank">accelerate-pagerank</a></li>
-            <li><a href="#accelerate-ray">accelerate-ray</a></li>
-            </ul></li>
+            <li><a href="#tutorials">Tutorials</a></li>
+            <li><a href="#larger-programs">Larger programs</a></li>
             </ul></li>
             </ul>
           </div>
                 <div class="container">
                     <h1 id="examples">Examples</h1>
-<h2 id="accelerate-examples">accelerate-examples</h2>
 <p>The <a href="https://hackage.haskell.org/package/accelerate-examples">accelerate-examples</a> package demonstrates a range of computational kernels and a few complete (albeit small) applications, as well as a regression test suite. To install it:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate-examples -fllvm-cpu</code></pre></div>
-<p>(Optional) If you have a CUDA capable NVIDIA GPU, additionally add the option <code>-fllvm-ptx</code> to the above command line in order to enable the <code>accelerate-llvm-ptx</code> backend.</p>
-<p>All programs included with the package include a few common command line arguments:</p>
+<p>(Optional) If you have a CUDA capable NVIDIA GPU, add the flag <code>-fllvm-ptx</code> to the above command line in order to enable the <code>accelerate-llvm-ptx</code> backend.</p>
+<p>This package includes the regression test suite for Accelerate: <code>accelerate-nofib</code>. In future we would also like to expand this to include benchmarks in order to track performance regressions as well. If you are experiencing problems with Accelerate, try running the test suite (it will take some time) to hopefully narrow down the problem then open a ticket on the <a href="https://github.com/AccelerateHS/accelerate/issues">issue tracker</a>.</p>
+<p>Following are a few short example programs demonstrating language features and <a href="/libraries.html">extra libraries</a>.</p>
+<h2 id="tutorials">Tutorials</h2>
+<p>Short example programs demonstrating particular language operations or libraries.</p>
 <ul>
-<li><p><em>--help</em>: Display information and options available for the current program.</p></li>
-<li><p><em>--llvm-cpu</em>: Execute using the LLVM backend for multicore CPUs. Specify the number of threads to use on the command line with <code>+RTS -Nx -RTS</code> to use <em>x</em> CPU cores (or omit <em>x</em> to use as many cores as your machine has. For example:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">accelerate-ray</span> --llvm-cpu +RTS -N -RTS</code></pre></div></li>
-<li><p><em>--llvm-ptx</em>: Execute using the LLVM backend for CUDA capable NVIDIA GPUs. Only available if <code>accelerate-examples</code> is compiled with the switch <code>-fllvm-ptx</code>.</p></li>
-</ul>
-<p>Some of the included programs are:</p>
-<h3 id="accelerate-nofib">accelerate-nofib</h3>
-<div class="container">
-<p>Regression test suite for Accelerate. In future we would also like to expand this to include benchmarks in order to track performance regressions as well. If you are experiencing problems with Accelerate, try running the test suite (it will take some time) to hopefully narrow down the problem then open a ticket on the <a href="https://github.com/AccelerateHS/accelerate/issues">issue tracker</a>.</p>
-</div>
-<h3 id="accelerate-canny">accelerate-canny</h3>
-<div class="col-md-6">
-<p>Implementation of the <a href="https://en.wikipedia.org/wiki/Canny_edge_detector">canny edge detector</a> in Accelerate. The majority of the algorithm is data-parallel and implemented in Accelerate, with the final (sequential) phase implemented using <a href="https://hackage.haskell.org/package/repa">repa</a>. Uses the <a href="https://hackage.haskell.org/package/accelerate-io">accelerate-io</a> package to efficiently convert between the Accelerate and Repa array representations.</p>
-</div>
-<div class="col-md-3">
-<img class="img-responsive center-block" src="/media/lena.bmp" alt="lena">
-<p class="text-center text-muted">
-Original image
-</p>
-</div>
-<div class="col-md-3">
-<img class="img-responsive center-block" src="/media/canny.bmp" alt="canny edge detector">
-<p class="text-center text-muted">
-Result
-</p>
-</div>
-<h3 id="accelerate-fluid">accelerate-fluid</h3>
-<div class="col-md-8">
-<p>Implementation of the particle-based fluid simulation described in the paper <em>Real-time Fluid Dynamics for Games</em> by Jos Stam, GDC 2003 (<a href="http://www.dgp.toronto.edu/people/stam/reality/Research/pdf/GDC03.pdf">pdf</a>).</p>
-<p><strong>Controls:</strong></p>
-<p>To interact with the simulation window:</p>
+<li><p><a href="/examples/mandelbrot.html">Mandelbrot set</a>: Generation of the classic Mandelbrot set fractal. Topics include:</p>
 <ul>
-<li><p><em>click</em>: add particles to the simulation</p></li>
-<li><p><em>shift-click+drag</em>: introduce forces, proportional to the speed of motion</p></li>
-<li><p><em>r</em>: reset the simulation to the initial state</p></li>
-<li><p><em>d</em>: toggle display of the density (particle) field</p></li>
-<li><p><em>v</em>: toggle display of velocity field lines</p></li>
-</ul>
-</div>
-<div class="col-md-4">
-<div class="embed-responsive embed-responsive-1by1">
-<p><video controls class="embed-responsive-item" poster="/media/fluid.jpg"> <source src="/media/fluid.mp4" type="video/mp4"> </video></p>
-</div>
-</div>
-<h3 id="accelerate-hashcat">accelerate-hashcat</h3>
-<div class="container">
-<p>This program attempts to recover the plain text of an MD5 hash by comparing the unknown to the hash of every entry in a given dictionary.</p>
-</div>
-<h3 id="accelerate-kmeans">accelerate-kmeans</h3>
-<div class="col-md-7">
-<p>In the <a href="https://en.wikipedia.org/wiki/K-means_clustering"><em>K</em>-means problem</a>, the goal is to partition a set of observations into <em>k</em> clusters, in which each observation belongs to the cluster with the nearest mean. Finding an optimum solution to the problem is NP-hard, however there exist efficient heuristic algorithms that converge quickly to a local optimum. This example implements <a href="https://en.wikipedia.org/wiki/Lloyd&#39;s_algorithm">Lloyd's algorithm</a> specialised to clustering points on a two-dimensional plane.</p>
-</div>
-<div class="col-md-5">
-<p><img class="img-responsive center-block" src="/media/k-means.png" alt="k-means"></p>
-</div>
-<h3 id="accelerate-mandelbrot">accelerate-mandelbrot</h3>
-<div class="col-md-7">
-<p>Implementation of the <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Mandelbrot set</a>. The program is interactive so that you can explore the set.</p>
-<p><strong>Controls:</strong></p>
+<li>Complex numbers</li>
+<li>Creating arrays with the <code>generate</code> operator</li>
+<li>Scalar iteration with <code>while</code></li>
+<li>Working with colours with the <a href="">colour-accelerate</a> library</li>
+<li>Writing BMP images to disk with the <a href="">accelerate-io</a> library</li>
+</ul></li>
+<li><p><a href="/examples/canny.html">Canny edge detector</a>: Implementation of the Canny edge detection technique to extract edges from images. Topics include:</p>
 <ul>
-<li><p><em>arrows:</em> pan the display in the corresponding direction</p></li>
-<li><p><em>z</em>, <em>;</em>: zoom in</p></li>
-<li><p><em>x</em>, <em>q</em>: zoom out</p></li>
-</ul>
-</div>
-<div class="col-md-5">
-<p><img class="img-responsive center-block" src="/media/mandelbrot.jpg" alt="Mandelbrot set"></p>
-</div>
-<h3 id="accelerate-nbody">accelerate-nbody</h3>
-<div class="container">
-<p>The <a href="https://en.wikipedia.org/wiki/N-body_simulation"><em>N</em>-body</a> example simulates the Newtonian gravitational forces on a set of massive bodies in 3D space, using a naive direct ( <em>O</em>(n<sup>2</sup>) ) algorithm. <em>N</em>-body simulations are widely used in physics and astronomy.</p>
-</div>
-<h3 id="accelerate-pagerank">accelerate-pagerank</h3>
-<div class="container">
-<p>A simplified version of the <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a>, a link analysis algorithm which assigns a numerical weighting to each element of a hyperlinked set of documents, with the purpose of determining the relative importance of each document within that set. PageRank was developed at Google as a method for measuring the importance of website pages.</p>
-</div>
-<h3 id="accelerate-ray">accelerate-ray</h3>
-<div class="col-md-7">
-<p>Implementation of a simple <a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)">ray tracer</a> in Accelerate. The program supports multiple reflections, but is otherwise quite basic. This simplicity however means the GUI program can be interactive.</p>
-<p><strong>Controls:</strong></p>
+<li>Image processing kernels using the <code>stencil</code> operator</li>
+<li>Converting between Accelerate and Repa array representations using the <a href="">accelerate-io</a> library</li>
+</ul></li>
+<li><p><a href="/examples/fluid.html">Fluid simulation</a>: A simple, interactive, particle-based fluid simulation. Topics include:</p>
 <ul>
-<li><p>Use the W, A, S, and D keys to move the view port up, left, down, and right respectively.</p></li>
-<li><p>Use the arrow keys to move the position of the light source in the corresponding direction.</p></li>
+<li>The <code>stencil</code> operator</li>
+<li>Using Haskell as a meta-programming language to help generate the Accelerate program</li>
+</ul></li>
+<li><p><a href="/examples/nbody.html">N-body simulation</a>: <em>N</em>-body simulation of a group of bodies undergoing gravitational interaction. Demonstrates:</p>
+<ul>
+<li>Use of <a href="">linear-accelerate</a> library for small vector quantities</li>
+<li>Use of <a href="">lens-accelerate</a> library</li>
+</ul></li>
+<li><p><a href="/examples/ray.html">Ray-tracer</a>: A simple real-time ray-tracer. Demonstrates:</p>
+<ul>
+<li>Use of <a href="">linear-accelerate</a> library</li>
+<li>Defining new data types for use within Accelerate programs</li>
+</ul></li>
 </ul>
-</div>
-<div class="col-md-5">
-<div class="embed-responsive embed-responsive-4by3">
-<p><video controls loop class="embed-responsive-item" poster="/media/ray.jpg"> <source src="/media/ray.mp4" type="video/mp4"> </video></p>
-</div>
-</div>
+<h2 id="larger-programs">Larger programs</h2>
+<ul>
+<li><a href="/examples/lulesh.html">LULESH</a>: Implementation of the Livermore Unstructured Lagrangian Explicit Shock Hydrodynamics proxy application.</li>
+</ul>
                   </div>
       </div>
     </div>
