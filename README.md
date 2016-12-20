@@ -7,7 +7,7 @@ Accelerate website
 
   1. Install [pandoc](http://pandoc.org)
 
-  1. For the main page content, edit the markdown files in directory `content/`
+  1. For the main page content, edit the markdown files in directory `md/`
 
   1. Run `make` to generate the corresponding `.html` files.
 
