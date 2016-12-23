@@ -209,22 +209,32 @@ syntactic sugar which inserts the Accelerate scalar infix conditional operator:
 ```haskell
 (?) :: Elt t => Exp Bool -> (Exp t, Exp t) -> Exp t
 ```
-<div class="alert alert-info" role="alert">
+<div class="alert alert-danger" role="alert">
 **Conditionals in parallel code:** As a rule of thumb, using conditionals in GPU
 code is considered bad because branches cause _SIMD divergence_. This means that
 when a GPU hits a conditional instruction, it first runs all the threads [of a
 warp] that take the true branch, and then runs all the threads that take the
 false branch. If you have nested conditionals, the amount of parallelism rapidly
 decreases.
+</div>
 
-In the function `ultra` the conditionals are really only used to supply
-appropriate input values to the subroutine `interp`, which does all the real
-work. See if you can restructure the function so that the branching occurs
+<div class="alert alert-info" role="alert">
+**Exercise:** In the function `ultra` the conditionals are really only used to
+supply appropriate input values to the subroutine `interp`, which does all the
+real work. See if you can restructure the function so that the branching occurs
 before the call to `interp`, so that all the threads perform the computation in
-parallel with the appropriate input values. **HINT:** You will need to use
-`lift` and `unlift`. You may also wish to use the [lens-accelerate](#) library
-to access nested tuples. See the section [TK](#) to learn how to check the code
-that is generated and compare the two approaches.
+parallel with the appropriate input values.
+
+_HINT:_
+
+  * You can use `lift` to combine multiple values together into a tuple;
+    `unlift` is used to deconstruct the tuple to access the individual values.
+
+  * It is sometimes convenient to use the [lens-accelerate](#) library to access
+    the values of (nested) tuples.
+
+  * See the section [TK](#) to learn how to check the code that is generated and
+    compare the two approaches.
 </div>
 
 Finally, we can assign a colour to each point on the complex plane given the

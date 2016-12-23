@@ -197,9 +197,17 @@ ultra p <span class="fu">=</span>
 <p>where the omitted function <code>cubic</code> computes the <a href="https://en.wikipedia.org/wiki/Cubic_Hermite_spline">Cubic Hemite spline</a>.</p>
 <p>Note that in the function <code>ultra</code> we used the <code>RebindableSyntax</code> extension so that we could reuse Haskell's standard if-then-else syntax. This is just syntactic sugar which inserts the Accelerate scalar infix conditional operator:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(?) ::</span> <span class="dt">Elt</span> t <span class="ot">=&gt;</span> <span class="dt">Exp</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> (<span class="dt">Exp</span> t, <span class="dt">Exp</span> t) <span class="ot">-&gt;</span> <span class="dt">Exp</span> t</code></pre></div>
-<div class="alert alert-info" role="alert">
+<div class="alert alert-danger" role="alert">
 <p><strong>Conditionals in parallel code:</strong> As a rule of thumb, using conditionals in GPU code is considered bad because branches cause <em>SIMD divergence</em>. This means that when a GPU hits a conditional instruction, it first runs all the threads [of a warp] that take the true branch, and then runs all the threads that take the false branch. If you have nested conditionals, the amount of parallelism rapidly decreases.</p>
-<p>In the function <code>ultra</code> the conditionals are really only used to supply appropriate input values to the subroutine <code>interp</code>, which does all the real work. See if you can restructure the function so that the branching occurs before the call to <code>interp</code>, so that all the threads perform the computation in parallel with the appropriate input values. <strong>HINT:</strong> You will need to use <code>lift</code> and <code>unlift</code>. See the section <a href="#">TK</a> to learn how to check the code that is generated and compare the two approaches.</p>
+</div>
+<div class="alert alert-info" role="alert">
+<p><strong>Exercise:</strong> In the function <code>ultra</code> the conditionals are really only used to supply appropriate input values to the subroutine <code>interp</code>, which does all the real work. See if you can restructure the function so that the branching occurs before the call to <code>interp</code>, so that all the threads perform the computation in parallel with the appropriate input values.</p>
+<p><em>HINT:</em></p>
+<ul>
+<li><p>You can use <code>lift</code> to combine multiple values together into a tuple; <code>unlift</code> is used to deconstruct the tuple to access the individual values.</p></li>
+<li><p>It is sometimes convenient to use the <a href="#">lens-accelerate</a> library to access the values of (nested) tuples.</p></li>
+<li>See the section <a href="#">TK</a> to learn how to check the code that is generated and compare the two approaches.</li>
+</ul>
 </div>
 <p>Finally, we can assign a colour to each point on the complex plane given the iteration count at which that point diverged. In order to avoid obvious &quot;bands&quot; of colour, we use the following continuous colouring scheme:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">escapeToColour
