@@ -87,6 +87,10 @@ ol ol > li:before {
   margin-left: -20px;
 }
 
+ul ul > li:last-child {
+  margin-bottom: 10px;
+}
+
 .btn {
   font-family: 'Raleway';
   font-weight: 600;
