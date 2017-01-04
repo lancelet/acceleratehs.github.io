@@ -91,6 +91,15 @@ ul ul > li:last-child {
   margin-bottom: 10px;
 }
 
+#TOC li {
+  margin: 0px;
+}
+
+.breadcrumb {
+  padding-left: 20px;
+  padding-bottom: 15px;
+}
+
 .btn {
   font-family: 'Raleway';
   font-weight: 600;

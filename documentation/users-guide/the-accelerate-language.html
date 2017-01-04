@@ -1,0 +1,206 @@
+<html >
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:600,800|Open+Sans">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/c754f00c7e.js"></script>
+    <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script> -->
+    <title>Accelerate: Documentation</title>
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+      div.sourceCode { overflow-x: auto; }
+      table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+        margin: 0; padding: 0; vertical-align: baseline; border: none; }
+      table.sourceCode { width: 100%; line-height: 100%; }
+      td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+      td.sourceCode { padding-left: 5px; }
+      code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+      code > span.dt { color: #902000; } /* DataType */
+      code > span.dv { color: #40a070; } /* DecVal */
+      code > span.bn { color: #40a070; } /* BaseN */
+      code > span.fl { color: #40a070; } /* Float */
+      code > span.ch { color: #4070a0; } /* Char */
+      code > span.st { color: #4070a0; } /* String */
+      code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+      code > span.ot { color: #007020; } /* Other */
+      code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+      code > span.fu { color: #06287e; } /* Function */
+      code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+      code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+      code > span.cn { color: #880000; } /* Constant */
+      code > span.sc { color: #4070a0; } /* SpecialChar */
+      code > span.vs { color: #4070a0; } /* VerbatimString */
+      code > span.ss { color: #bb6688; } /* SpecialString */
+      code > span.im { } /* Import */
+      code > span.va { color: #19177c; } /* Variable */
+      code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+      code > span.op { color: #666666; } /* Operator */
+      code > span.bu { } /* BuiltIn */
+      code > span.ex { } /* Extension */
+      code > span.pp { color: #bc7a00; } /* Preprocessor */
+      code > span.at { color: #7d9029; } /* Attribute */
+      code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+      code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+      code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+      code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    </style>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  </head>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/index.html" style="font-family: 'Raleway'; font-weight: 600;">AccelerateHS</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="/get-started.html">Get Started</a></li>
+          <li class="active"><a href="/documentation.html">Documentation</a></li>
+          <li><a href="/libraries.html">Libraries</a></li>
+          <li><a href="/examples.html">Examples</a></li>
+          <li><a href="/community.html">Community</a></li>
+          <li><a href="/publications.html">Publications</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://github.com/AccelerateHS/accelerate"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a></li>
+          <li><a href="http://groups.google.com/group/accelerate-haskell"><i class="fa fa-envelope-o fa-lg" aria-hidden="true"></i></a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <body>
+    <div class="container">
+      <div class="row">
+                <div class="container">
+                    <ol class="breadcrumb">
+<li>
+<a href="/documentation/users-guide.html">Users Guide</a>
+</li>
+<li class="active">
+The <i>Accelerate</i> Language
+</li>
+</ol>
+<h1 id="the-accelerate-language">The <em>Accelerate</em> Language</h1>
+<p><em>Accelerate</em> is an embedded language of array-based computations for high-performance computing in Haskell. Programs in Accelerate are expressed in the form of parameterised collective operations on regular multidimensional arrays, such as maps, reductions, and permutations. Accelerate then takes these computations and optimises, compiles, and executes them for the chosen target architecture.</p>
+<p>Accelerate is an <em>embedded language</em>, which distinguishes between vanilla Haskell arrays and embedded language arrays, as well as the computations on each of these. Programs written in Accelerate are not compiled by the regular Haskell compiler (GHC). Rather, each Accelerate backend is a <em>runtime compiler</em> which generates and executes [parallel SIMD] code of the target architecture at application <em>runtime</em>.</p>
+<p>Accelerate distinguishes the types of collective operations <code>Acc</code> from the type of scalar operations <code>Exp</code> to achieve a <em>stratified language</em>. Collective operations comprise many scalar computations which are executed in parallel, but scalar computations <em>can not</em> initiate new collective operations. This distinction excludes <em>nested, irregular</em> data-parallelism statically; instead, Accelerate is limited to <em>flat data-parallelism</em> involving only regular, multi-dimensional arrays.</p>
+<h2 id="embedded-array-computations">Embedded array computations</h2>
+<p>The type constructor <code>Acc</code> represents embedded collective array operations. A term of type <code>Acc a</code> is an Accelerate program which, once executed, will produce a value of type <code>a</code> (consisting of one or more arrays). Collective operations of type <code>Acc a</code> comprise many <em>scalar expressions</em>, represented by the type <code>Exp</code>, which will be executed in parallel. Although collective operations comprise many scalar operations executed in parallel, scalar operations <em>can not</em> initiate new collective operations. This stratification between scalar operations in <code>Exp</code> and collective operations in <code>Acc</code> helps to statically exclude <em>nested data-parallelism</em>, which is difficult to execute efficiently on constrained hardware such as GPUs.</p>
+<p>For example, to compute a vector dot product we can write:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate</span>  <span class="kw">as</span> <span class="dt">A</span>
+<span class="kw">import qualified</span> <span class="dt">Prelude</span>      <span class="kw">as</span> <span class="dt">P</span>
+
+<span class="ot">dotp ::</span> <span class="dt">Num</span> a <span class="ot">=&gt;</span> <span class="dt">Vector</span> a <span class="ot">-&gt;</span> <span class="dt">Vector</span> a <span class="ot">-&gt;</span> <span class="dt">Acc</span> (<span class="dt">Scalar</span> a)
+dotp xs ys <span class="fu">=</span>
+  <span class="kw">let</span>
+      xs&#39; <span class="fu">=</span> use xs
+      ys&#39; <span class="fu">=</span> use ys
+  <span class="kw">in</span>
+  fold (<span class="fu">+</span>) <span class="dv">0</span> ( zipWith (<span class="fu">*</span>) xs&#39; ys&#39; )</code></pre></div>
+<p>The function <code>dotp</code> consumes two one-dimensional arrays (<code>Vector</code>s) of values, and produces a single (<code>Scalar</code>) result as output. As the return type is wrapped in <code>Acc</code>, we see that it is an embedded Accelerate computation---it will be evaluated in the <em>object</em> language of dynamically generated parallel code, rather than the <em>meta</em> language of vanilla Haskell.</p>
+<p>The arguments to <code>dotp</code> are plain Haskell arrays (not wrapped in <code>Acc</code>). To make these arrays accessible to Accelerate computations, they must first be embedded with the <code>use</code> function. This turns a regular, vanilla array, or tuple of arrays, into an Accelerate array:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">use ::</span> <span class="dt">Arrays</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Acc</span> a</code></pre></div>
+<p>An Accelerate backed is use to evaluate the embedded computation and return the result back to vanilla Haskell. Calling the <code>run</code> function of a backend will generate code for the target architecture, compile, and execute it. Currently the following backends are available:</p>
+<ul>
+<li><a href="#TK">accelerate-llvm-native</a>: for execution on shared-memory multicore CPUs</li>
+<li><a href="#TK">accelerate-llvm-ptx</a>: for execution on NVIDIA CUDA-capable GPUs</li>
+</ul>
+<p>See the <a href="/get-started.html">Getting Started</a> section for instructions on installing these backends.</p>
+<div class="alert alert-success" role="alert">
+<p><strong>Tip!</strong> Since <code>Acc</code> represents embedded computations that will only be executed when evaluated by a backend, we can programmatically generate computations using the meta language (Haskell): for example, unrolling loops or embedding input values directly into the generated code. See the <a href="/examples/fluid.html">fluid simulation</a> program for an example.</p>
+</div>
+<div class="alert alert-warning" role="alert">
+<p><strong>Heads up!</strong> It is usually best to keep all intermediate computations in <code>Acc</code>, and only <code>run</code> the computation at the very end to produce the final result. This enables optimisations between intermediate computations (e.g. array fusion) and, if the target architecture has a separate memory space, as is the case of GPUs, to prevent excessive data transfers.</p>
+</div>
+<h2 id="embedded-scalar-operations">Embedded scalar operations</h2>
+<p>The type constructor <code>Exp</code> represents embedded scalar expressions. The collective operations in Accelerate of type <code>Acc</code> consist of many scalar operations of type <code>Exp</code> executed in parallel.</p>
+<p>Accelerate implements (or redefines) instances for the familiar Haskell type classes for scalar expressions. In the <code>dotp</code> program above, this allows us to make use of the usual numeric operations <code>(+)</code> and <code>(*)</code> from the <code>Num</code> typeclass, applied to embedded scalar expressions.</p>
+<p>Analogously to <code>use</code>, to make scalar values accessible to Accelerate computations they must first be embedded with the <code>constant</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">use ::</span> <span class="dt">Elt</span> t <span class="ot">=&gt;</span> t <span class="ot">-&gt;</span> <span class="dt">Exp</span> t</code></pre></div>
+<div class="alert alert-success" role="alert">
+<p><strong>Tip!</strong> For constant numeric values this is often performed automatically. Notice in the <code>dotp</code> program we did not need to use the <code>constant</code> function to inject the initial value <span class="math inline">\(0\)</span>. This is because GHC applies the <code>fromInteger</code> function of the <code>Num</code> typeclass (or the <code>fromRational</code> function of the <code>Fractional</code> typeclass for floating point values) to the constant value, which implements the lifting operation for us.</p>
+</div>
+<h2 id="arrays">Arrays</h2>
+<p>The <code>Array</code> is the core computational unit of Accelerate. Computations in Accelerate take the form of collective operations over arrays of the type <code>Array sh e</code>. All programs in Accelerate take zero or more arrays as input and produce one or more arrays as output. The <code>Array</code> type has two parameters:</p>
+<ul>
+<li><p><em>sh</em>: is the shape of the array, tracking the dimensionality and extent of each dimension of the array. For example, <code>DIM1</code> is the type of the shape of a one dimensional array (<code>Vector</code>), <code>DIM2</code> for two-dimensional arrays, and so on. See the section <a href="#array-shapes-indices">array shapes</a> for more information.</p></li>
+<li><p><em>e</em>: represents the type each array element, such as <code>Int</code> or <code>Float</code>. See the section on allowable <a href="#array-elements">array element types</a> for more information.</p></li>
+</ul>
+<p>Array data is stored unboxed in an unzipped struct-of-array representation, and elements are laid out in row-major order (the right-most index of the shape is the fastest varying).</p>
+<p>If the object code is executed in a separate memory space, for example on a GPU, arrays will be transferred to the target device as necessary (asynchronously and in parallel with other tasks) and cached on the device as long as sufficient memory is available.</p>
+<h3 id="array-elements">Array elements</h3>
+<p>The <code>Elt</code> class characterises the allowable array element types, and hence the types which can appear in scalar Accelerate expressions. It roughly consists of:</p>
+<ul>
+<li>Signed and unsigned integers (8, 16, 32, and 64-bits wide)</li>
+<li>Floating point numbers (single and double precision)</li>
+<li><code>Char</code></li>
+<li><code>Bool</code></li>
+<li><code>()</code></li>
+<li>Shapes formed from <code>Z</code> and <code>(:.)</code></li>
+<li><a href="https://hackage.haskell.org/package/base/docs/Foreign-C-Types.html">Foreign.C.Types</a> for integral, floating-point, and characters</li>
+<li>Nested tuples of all the above (currently up to 15-elements wide)</li>
+</ul>
+<p>Note that <code>Array</code> itself is not an allowable array element type; there are no nested arrays in Accelerate, only regular multi-dimensional arrays.</p>
+<p>Accelerate arrays consist of these simple atomic types stored efficiently in memory, as consecutive unpacked elements without pointers in an unzipped struct-of-array format.</p>
+<p>Adding new instances to <code>Elt</code> consists of explaining to Accelerate how to map between your data type and a (tuple of) primitive values. For examples see:</p>
+<ul>
+<li><a href="#TK">Data.Array.Accelerate.Data.Complex</a></li>
+<li><a href="#TK">Data.Array.Accelerate.Data.Monoid</a></li>
+<li><a href="/libraries/linear-accelerate.html">linear-accelerate</a></li>
+<li><a href="/libraries/colour-accelerate.html">colour-accelerate</a></li>
+</ul>
+<h3 id="array-shapes-indices">Array shapes &amp; indices</h3>
+<p>Operations in Accelerate consist of collective operations over arrays of type <code>Array sh e</code>. Much like the <a href="https://hackage.haskell.org/package/repa">repa</a> library, the shape of an array, as well as array indices used to access individual elements, are built inductively using <code>Z</code> and <code>(:.)</code> (analogously to a list).</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Z</span> <span class="fu">=</span> <span class="dt">Z</span>
+<span class="kw">data</span> tail <span class="fu">:.</span> head <span class="fu">=</span> tail <span class="fu">:.</span> head</code></pre></div>
+<p>The constructor <code>Z</code> corresponds to a shape with zero dimensions (or a <code>Scalar</code> array consisting of a single element) and us used to mark the end of the list. The constructor <code>(:.)</code> adds additional dimensions to the <em>right</em> of an index. For example:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Z</span> <span class="fu">:.</span> <span class="dt">Int</span></code></pre></div>
+<p>is the type of the shape of a one-dimensional array (<code>Vector</code>) indexed by an <code>Int</code>, while:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Z</span> <span class="fu">:.</span> <span class="dt">Int</span> <span class="fu">:.</span> <span class="dt">Int</span></code></pre></div>
+<p>is the type of the shape of a two-dimensional array indexed by an <code>Int</code> in each dimension.</p>
+<p>This style is used to construct both the <em>type</em> (as shown above) as well as the <em>value</em> of a shape. For example, a vector of ten elements has the following shape:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">sh ::</span> <span class="dt">Z</span> <span class="fu">:.</span> <span class="dt">Int</span>
+sh <span class="fu">=</span> <span class="dt">Z</span> <span class="fu">:.</span> <span class="dv">10</span></code></pre></div>
+<div class="alert alert-warning" role="alert">
+<p><strong>Heads up!</strong> The right-most index corresponds to the <em>innermost</em> dimension. This is the fastest-varying index, and corresponds to the elements of the array which are adjacent in memory.</p>
+</div>
+<p>The common shape and array types that we have seen above are simply type synonyms:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">DIM0</span> <span class="fu">=</span> <span class="dt">Z</span>
+<span class="kw">type</span> <span class="dt">DIM1</span> <span class="fu">=</span> <span class="dt">DIM0</span> <span class="fu">:.</span> <span class="dt">Int</span>
+<span class="kw">type</span> <span class="dt">DIM2</span> <span class="fu">=</span> <span class="dt">DIM1</span> <span class="fu">:.</span> <span class="dt">Int</span>
+  <span class="co">-- and so on...</span>
+
+<span class="kw">type</span> <span class="dt">Scalar</span> e <span class="fu">=</span> <span class="dt">Array</span> <span class="dt">DIM0</span> e
+<span class="kw">type</span> <span class="dt">Vector</span> e <span class="fu">=</span> <span class="dt">Array</span> <span class="dt">DIM1</span> e</code></pre></div>
+                  </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container text-center">
+        <p class="text-muted">
+        <a href="https://github.com/AccelerateHS/accelerate">GitHub Project</a> &middot;
+        <a href="https://github.com/AccelerateHS/accelerate/issues">Issue Tracker</a> &middot;
+        <a href="http://groups.google.com/group/accelerate-haskell">Mailing List</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
