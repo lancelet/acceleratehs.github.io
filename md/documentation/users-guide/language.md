@@ -126,7 +126,7 @@ use :: Elt t => t -> Exp t
 <div class="alert alert-success" role="alert">
 **Tip!** For constant numeric values this is often performed automatically.
 Notice in the `dotp` program we did not need to use the `constant` function to
-inject the initial value $0$. This is because GHC applies the `fromInteger`
+inject the initial value 0. This is because GHC applies the `fromInteger`
 function of the `Num` typeclass (or the `fromRational` function of the
 `Fractional` typeclass for floating point values) to the constant value, which
 implements the lifting operation for us.

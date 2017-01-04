@@ -50,7 +50,6 @@
       code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
       code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
     </style>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   </head>
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -134,7 +133,7 @@ dotp xs ys <span class="fu">=</span>
 <p>Analogously to <code>use</code>, to make scalar values accessible to Accelerate computations they must first be embedded with the <code>constant</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">use ::</span> <span class="dt">Elt</span> t <span class="ot">=&gt;</span> t <span class="ot">-&gt;</span> <span class="dt">Exp</span> t</code></pre></div>
 <div class="alert alert-success" role="alert">
-<p><strong>Tip!</strong> For constant numeric values this is often performed automatically. Notice in the <code>dotp</code> program we did not need to use the <code>constant</code> function to inject the initial value <span class="math inline">\(0\)</span>. This is because GHC applies the <code>fromInteger</code> function of the <code>Num</code> typeclass (or the <code>fromRational</code> function of the <code>Fractional</code> typeclass for floating point values) to the constant value, which implements the lifting operation for us.</p>
+<p><strong>Tip!</strong> For constant numeric values this is often performed automatically. Notice in the <code>dotp</code> program we did not need to use the <code>constant</code> function to inject the initial value 0. This is because GHC applies the <code>fromInteger</code> function of the <code>Num</code> typeclass (or the <code>fromRational</code> function of the <code>Fractional</code> typeclass for floating point values) to the constant value, which implements the lifting operation for us.</p>
 </div>
 <h2 id="arrays">Arrays</h2>
 <p>The <code>Array</code> is the core computational unit of Accelerate. Computations in Accelerate take the form of collective operations over arrays of the type <code>Array sh e</code>. All programs in Accelerate take zero or more arrays as input and produce one or more arrays as output. The <code>Array</code> type has two parameters:</p>
