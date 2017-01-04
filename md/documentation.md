@@ -47,3 +47,6 @@ design and implementation of Accelerate can be found in our
   * The [haskell.org](https://www.haskell.org/documentation) website lists
     several books, courses, and tutorials to help you learn Haskell.
 
+  * [Trevor's PhD Thesis](https://github.com/tmcdonell/tmcdonell.github.io/raw/master/papers/TrevorMcDonell_PhD_Thesis.pdf) describes the design and implementation of the frontend
+    optimisations and CUDA backend.
+
