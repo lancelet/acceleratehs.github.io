@@ -9,10 +9,9 @@ This section lists changes and corrections to Simon Marlow's excellent book
 [*Parallel and Concurrent Programming in Haskell*](http://chimera.labs.oreilly.com/books/1230000000929)
 due to changes in the Accelerate API since the book's publication. The book is
 available for purchase from O'Rielly Media in electronic and paper formats, and
-can also be viewed online for free.
+can also be viewed online for free. The following notes are relevant for _Chapter
+6: GPU Programming with Accelerate_.
 
-
-## 6. GPU Programming with Accelerate
 
   * To run programs on the GPU, it is recommended to use the
     `accelerate-llvm-ptx` backend, rather than the (older, deprecated)
@@ -31,4 +30,9 @@ import Data.Array.Accelerate.CUDA
 ```haskell
 import Data.Array.Accelerate.LLVM.Native
 ```
+
+  * The Accelerate API has changed in several key ways which makes it
+    significantly easier to implement the [Mandelbrot Set program](/examples/mandelbrot.html).
+    See the tutorial we have put together [here](/examples/mandelbrot.html) for
+    the updated instructions.
 

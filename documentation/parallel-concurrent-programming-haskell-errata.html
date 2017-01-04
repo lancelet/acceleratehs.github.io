@@ -91,15 +91,12 @@
             <!--   <li class="nav-header" id="toctitle">Table of Contents</il> -->
             <!-- </ul> -->
             <ul>
-            <li><a href="#parallel-and-concurrent-programming-in-haskell-errata">Parallel and Concurrent Programming in Haskell: Errata</a><ul>
-            <li><a href="#gpu-programming-with-accelerate">6. GPU Programming with Accelerate</a></li>
-            </ul></li>
+            <li><a href="#parallel-and-concurrent-programming-in-haskell-errata">Parallel and Concurrent Programming in Haskell: Errata</a></li>
             </ul>
           </div>
                 <div class="container">
                     <h1 id="parallel-and-concurrent-programming-in-haskell-errata">Parallel and Concurrent Programming in Haskell: Errata</h1>
-<p>This section lists changes and corrections to Simon Marlow's excellent book <a href="http://chimera.labs.oreilly.com/books/1230000000929"><em>Parallel and Concurrent Programming in Haskell</em></a> due to changes in the Accelerate API since the book's publication. The book is available for purchase from O'Rielly Media in electronic and paper formats, and can also be viewed online for free.</p>
-<h2 id="gpu-programming-with-accelerate">6. GPU Programming with Accelerate</h2>
+<p>This section lists changes and corrections to Simon Marlow's excellent book <a href="http://chimera.labs.oreilly.com/books/1230000000929"><em>Parallel and Concurrent Programming in Haskell</em></a> due to changes in the Accelerate API since the book's publication. The book is available for purchase from O'Rielly Media in electronic and paper formats, and can also be viewed online for free. The following notes are relevant for <em>Chapter 6: GPU Programming with Accelerate</em>.</p>
 <ul>
 <li><p>To run programs on the GPU, it is recommended to use the <code>accelerate-llvm-ptx</code> backend, rather than the (older, deprecated) <code>accelerate-cuda</code> backend. To use this backend, we need to use:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate.LLVM.PTX</span></code></pre></div>
@@ -107,6 +104,7 @@
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate.CUDA</span></code></pre></div>
 <p>Alternatively, if you do not have a CUDA capable GPU, rather than using the (very slow) interpreter backend you can use the <code>accelerate-llvm-native</code> backend for multicore CPUs, which was not available at the time of publication:</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate.LLVM.Native</span></code></pre></div></li>
+<li><p>The Accelerate API has changed in several key ways which makes it significantly easier to implement the <a href="/examples/mandelbrot.html">Mandelbrot Set program</a>. See the tutorial we have put together <a href="/examples/mandelbrot.html">here</a> for the updated instructions.</p></li>
 </ul>
                   </div>
       </div>
