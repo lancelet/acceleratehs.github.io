@@ -18,15 +18,17 @@ design and implementation of Accelerate can be found in our
 
 ## On this site
 
+<!--
+NOTE: Do not put any spaces between the list items so that pandoc transforms
+this into a compact list, with no <p> tags around each item.
+-->
+
   1. [Getting started guide](/get-started.html)
-
     1. [Building the development sources](/get-started/install-from-github.html)
-
   1. [Common libraries and their documentation](/libraries.html)
-
   1. Users guide
-
       1. The _Accelerate_ language
+      1. Foreign Function Interface (FFI)
 
 
 ## External resources
