@@ -16,17 +16,17 @@ of modern architectures including shared-memory multicore CPU systems and GPUs.
 
 ## Contents
 
-  - [The _Accelerate_ language](/documentation/users-guide/the-accelerate-language.html)
+  - [The _Accelerate_ language](/documentation/users-guide/language.html)
 
-    - [Embedded array computations](/documentation/users-guide/the-accelerate-language.html#embedded-array-computations)
+    - [Embedded array computations](/documentation/users-guide/language.html#embedded-array-computations)
 
-    - [Embedded scalar operations](/documentation/users-guide/the-accelerate-language.html#embedded-scalar-operations)
+    - [Embedded scalar operations](/documentation/users-guide/language.html#embedded-scalar-operations)
 
-    - [Arrays](/documentation/users-guide/the-accelerate-language.html#arrays)
+    - [Arrays](/documentation/users-guide/language.html#arrays)
 
-        - [Array elements](/documentation/users-guide/the-accelerate-language.html#array-elements)
+        - [Array elements](/documentation/users-guide/language.html#array-elements)
 
-        - [Array shapes & indices](/documentation/users-guide/the-accelerate-language.html#array-shapes-indices)
+        - [Array shapes & indices](/documentation/users-guide/language.html#array-shapes-indices)
 
   - Foreign Function Interface (FFI)
 

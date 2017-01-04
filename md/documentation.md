@@ -26,7 +26,7 @@ design and implementation of Accelerate can be found in our
 
   - [Users Guide](/documentation/users-guide.html)
 
-    - [The _Accelerate_ language](/documentation/users-guide/the-accelerate-language.html)
+    - [The _Accelerate_ language](/documentation/users-guide/language.html)
 
     - Foreign Function Interface (FFI)
 
