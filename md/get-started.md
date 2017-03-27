@@ -50,13 +50,13 @@ the included interpreter backend.[^1] For good performance however we also need
 to install one (or both) of the LLVM backends, which will compile Accelerate
 programs to native code.
 
-Install a version of the `llvm-general` package suitable for the version of LLVM
+Install a version of the `llvm-hs` package suitable for the version of LLVM
 installed on your system. The first two numbers of the version of LLVM
-and the `llvm-general` package must match. We must also install with shared
-library support so that we can use `llvm-general` from within `ghci` (and
-Template Haskell). For example, if you have LLVM-3.8 installed:
+and the `llvm-hs` package must match. We must also install with shared
+library support so that we can use `llvm-hs` from within `ghci` and
+Template Haskell. For example, if you have LLVM-4.0 installed:
 ```sh
-cabal install llvm-general -fshared-llvm --constraint="llvm-general==3.8.*"
+cabal install llvm-hs -fshared-llvm --constraint="llvm-hs==4.0.*"
 ```
 
 Install the Accelerate LLVM backend for multicore CPUs:

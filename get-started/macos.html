@@ -114,20 +114,19 @@
 <p>Download and install <a href="https://www.haskell.org/platform/mac.html">GHC</a>. The minimal binary distribution contains GHC-8.0 plus build tools such as <code>cabal</code>, and is the generally recommended option over the full install (which additionally includes some pre-installed libraries). Instructions for installing via the <a href="http://brew.sh">Homebrew</a> or <a href="https://www.macports.org">MacPorts</a> package managers are also available on that page.</p>
 <h3 id="llvm">1.2 LLVM</h3>
 <p>Executing an Accelerate program differs from that of regular Haskell programs. Programs written in Accelerate require both the Accelerate library, which contains the operations of the language we use to write programs, as well as a (or several) backend(s) which will compile and execute the program for a particular target architecture, such as CPUs or GPUs.</p>
-<p>The two primary Accelerate backends are currently based on <a href="http://llvm.org">LLVM</a>, a mature optimising compiler targeting several architectures. LLVM is available through both the Homebrew and MacPorts package managers, or can be compiled manually from the source releases found <a href="http://llvm.org/releases/download.html">here</a>. If compiling from source be sure to build LLVM with shared library support.</p>
-<p>Example of installing LLVM-3.8 via <a href="http://brew.sh">Homebrew</a>:</p>
+<p>The two primary Accelerate backends are currently based on <a href="http://llvm.org">LLVM</a>, a mature optimising compiler targeting several architectures. LLVM is available through both the Homebrew and MacPorts package managers, or can be compiled manually from the source releases found <a href="http://llvm.org/releases/download.html">here</a>. If compiling from source be sure to build LLVM with the <code>libLLVM</code> shared library.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>Example of installing LLVM-4.0 via <a href="http://brew.sh">Homebrew</a>:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">brew</span> install libffi
-<span class="ex">brew</span> install homebrew/versions/llvm38 --all-targets</code></pre></div>
-<p>The LLVM-based Accelerate packages are currently tested with LLVM versions 3.5, 3.8, and 3.9. However, LLVM-3.5 is currently not compatible with GHC-8.0. Please contact us if this is a problem for you.</p>
+<span class="ex">brew</span> install llvm-hs/homebrew-llvm/llvm-4.0</code></pre></div>
 <h3 id="cuda-optional">1.3 CUDA (optional)</h3>
 <p>If you have a CUDA capable NVIDIA GPU (see the <a href="https://en.wikipedia.org/wiki/CUDA#GPUs_supported">list of supported devices</a>) and would like to run Accelerate programs on the GPU, you will need to download and install the CUDA toolkit available <a href="https://developer.nvidia.com/cuda-downloads">here</a>.</p>
 <h2 id="install-accelerate">2. Install Accelerate</h2>
 <p>We can now install the core Accelerate library:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate</code></pre></div>
 <p>This will install the current stable release of Accelerate from <a href="https://hackage.haskell.org">Hackage</a>. If you would like to instead install the latest in-development version, see how to <a href="/get-started/install-from-github.html">install from GitHub</a>.</p>
-<p>This is sufficient to write programs in Accelerate as well as execute them using the included interpreter backend.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> For good performance however we also need to install one (or both) of the LLVM backends, which will compile Accelerate programs to native code.</p>
-<p>Install a version of the <code>llvm-general</code> package suitable for the version of LLVM installed in step <a href="#llvm">1.2</a>.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> The first two numbers of the version of LLVM and the <code>llvm-general</code> package must match. We must also install with shared library support so that we can use <code>llvm-general</code> from within <code>ghci</code> (and Template Haskell). Continuing the example above where we installed LLVM-3.8:</p>
-<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install llvm-general -fshared-llvm --constraint=<span class="st">&quot;llvm-general==3.8.*&quot;</span></code></pre></div>
+<p>This is sufficient to write programs in Accelerate as well as execute them using the included interpreter backend.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> For good performance however we also need to install one (or both) of the LLVM backends, which will compile Accelerate programs to native code.</p>
+<p>Install a version of the <code>llvm-hs</code> package suitable for the version of LLVM installed in step <a href="#llvm">1.2</a>. The first two numbers of the version of LLVM and the <code>llvm-hs</code> package must match. We must also install with shared library support so that we can use <code>llvm-hs</code> from within <code>ghci</code> and Template Haskell. Continuing the example above where we installed LLVM-4.0:</p>
+<div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install llvm-hs -fshared-llvm --constraint=<span class="st">&quot;llvm-hs==4.0.*&quot;</span></code></pre></div>
 <p>Install the Accelerate LLVM backend for multicore CPUs:</p>
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate-llvm-native</code></pre></div>
 <p>(Optional) If you have a CUDA capable GPU and installed the CUDA toolkit in step <a href="#cuda-optional">1.3</a>, you can also install the Accelerate backend for NVIDIA GPUs:</p>
@@ -164,8 +163,8 @@ Scalar Z [615.0]</code></pre>
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Although the core <code>accelerate</code> package includes an interpreter that can be used to run Accelerate programs, its performance is fairly poor as it is designed as a reference implementation of the language semantics, rather than for performance.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>This constraint is also why we currently can not support LLVM-3.6, LLVM-3.7, or LLVM-3.5 on GHC-8.0; <code>llvm-general</code> is unfortunately not currently available for those targets.<a href="#fnref2">↩</a></p></li>
+<li id="fn1"><p>Include the build options <code>-DLLVM_BUILD_LLVM_DYLIB=True</code> and <code>-DLLVM_LINK_LLVM_DYLIB=True</code>.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Although the core <code>accelerate</code> package includes an interpreter that can be used to run Accelerate programs, its performance is fairly poor as it is designed as a reference implementation of the language semantics, rather than for performance.<a href="#fnref2">↩</a></p></li>
 </ol>
 </div>
                   </div>

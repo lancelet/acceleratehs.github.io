@@ -55,18 +55,14 @@ The two primary Accelerate backends are currently based on
 architectures. LLVM is available through both the Homebrew and MacPorts package
 managers, or can be compiled manually from the source releases found
 [here](http://llvm.org/releases/download.html). If compiling from source be sure
-to build LLVM with shared library support.
+to build LLVM with the `libLLVM` shared library.[^2]
 
-Example of installing LLVM-3.8 via [Homebrew](http://brew.sh):
+Example of installing LLVM-4.0 via [Homebrew](http://brew.sh):
 
 ```sh
 brew install libffi
-brew install homebrew/versions/llvm38 --all-targets
+brew install llvm-hs/homebrew-llvm/llvm-4.0
 ```
-
-The LLVM-based Accelerate packages are currently tested with LLVM versions 3.5,
-3.8, and 3.9. However, LLVM-3.5 is currently not compatible with GHC-8.0. Please
-contact us if this is a problem for you.
 
 
 ### 1.3 CUDA (optional)
@@ -94,13 +90,13 @@ the included interpreter backend.[^1] For good performance however we also need
 to install one (or both) of the LLVM backends, which will compile Accelerate
 programs to native code.
 
-Install a version of the `llvm-general` package suitable for the version of LLVM
-installed in step [1.2](#llvm).[^2] The first two numbers of the version of LLVM
-and the `llvm-general` package must match. We must also install with shared
-library support so that we can use `llvm-general` from within `ghci` (and
-Template Haskell). Continuing the example above where we installed LLVM-3.8:
+Install a version of the `llvm-hs` package suitable for the version of LLVM
+installed in step [1.2](#llvm). The first two numbers of the version of LLVM
+and the `llvm-hs` package must match. We must also install with shared
+library support so that we can use `llvm-hs` from within `ghci` and
+Template Haskell. Continuing the example above where we installed LLVM-4.0:
 ```sh
-cabal install llvm-general -fshared-llvm --constraint="llvm-general==3.8.*"
+cabal install llvm-hs -fshared-llvm --constraint="llvm-hs==4.0.*"
 ```
 
 Install the Accelerate LLVM backend for multicore CPUs:
@@ -183,7 +179,6 @@ Congratulations, you are set up to use Accelerate! Now you are ready to:
         designed as a reference implementation of the language semantics, rather
         than for performance.
 
-  [^2]: This constraint is also why we currently can not support LLVM-3.6,
-        LLVM-3.7, or LLVM-3.5 on GHC-8.0; `llvm-general` is unfortunately not
-        currently available for those targets.
+  [^2]: Include the build options `-DLLVM_BUILD_LLVM_DYLIB=True` and
+        `-DLLVM_LINK_LLVM_DYLIB=True`.
 
