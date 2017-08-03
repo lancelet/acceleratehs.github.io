@@ -55,6 +55,7 @@
             <!-- </ul> -->
             <ul>
             <li><a href="#publications">Publications</a><ul>
+            <li><a href="#streaming-irregular-arrays">Streaming Irregular Arrays</a></li>
             <li><a href="#type-safe-runtime-code-generation-accelerate-to-llvm">Type-safe Runtime Code Generation: Accelerate to LLVM</a></li>
             <li><a href="#functional-array-streams">Functional Array Streams</a></li>
             <li><a href="#converting-data-parallelism-to-tast-parallelism-by-rewrites">Converting Data-Parallelism to Tast-Parallelism by Rewrites</a></li>
@@ -69,6 +70,16 @@
 <p>If you use Accelerate for academic research, you are encouraged (though certainly not required) to cite the following papers, which explain various aspects of the system.</p>
 <p>Accelerate is primarily developed by academics, so citations matter a lot to us. As an added benefit, you increase Accelerate's exposure and potential user (and developer!) base, which is a benefit to all users of Accelerate. Thanks in advance!</p>
 <p>In reverse chronological order:</p>
+<h3 id="streaming-irregular-arrays">Streaming Irregular Arrays</h3>
+<p>Robert Clifton-Everest, Trevor L. McDonell, Manuel M. T. Chakravarty, and Gabriele Keller.</p>
+<p>In <a href="https://www.haskell.org/haskell-symposium/2017/"><em>Haskell '17: The 10th ACM SIGPLAN Symposium on Haskell</em></a>, ACM, 2017.</p>
+<p><strong>Abstract:</strong></p>
+<p>Previous work has demonstrated that it is possible to generate efficient and highly parallel code for multicore CPUs and GPUs from combinator-based array languages for a range of applications. That work, however, has been limited to operating on flat, rectangular structures without any facilities for irregularity or nesting.</p>
+<p>In this paper, we show that even a limited form of nesting provides substantial benefits both in terms of the expressiveness of the language (increasing modularity and providing support for simple irregular structures) and the portability of the code (increasing portability across resource-constrained devices, such as GPUs). Specifically, we generalise Blelloch's flattening transformation along two lines: (1) we explicitly distinguish between definitely regular and potentially irregular computations; and (2) we handle multidimensional arrays. We demonstrate the utility of this generalisation by an extension of the embedded array language Accelerate to include irregular streams of multidimensional arrays. We discuss code generation, optimisation, and irregular stream scheduling as well as a range of benchmarks on both multicore CPUs and GPUs.</p>
+<ul>
+<li><a href="https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.pdf">PDF</a> (12 pages)</li>
+<li><a href="https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.bib">bibtex</a></li>
+</ul>
 <h3 id="type-safe-runtime-code-generation-accelerate-to-llvm">Type-safe Runtime Code Generation: Accelerate to LLVM</h3>
 <p>Trevor L. McDonell, Manuel M. T. Chakravarty, Vinod Grover, and Ryan R. Newton.</p>
 <p>In <a href="https://www.haskell.org/haskell-symposium/2015/"><em>Haskell '15: The 8th ACM SIGPLAN Symposium on Haskell</em></a>, ACM, 2015.</p>

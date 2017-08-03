@@ -18,6 +18,37 @@ advance!
 In reverse chronological order:
 
 
+### Streaming Irregular Arrays
+
+Robert Clifton-Everest, Trevor L. McDonell, Manuel M. T. Chakravarty, and Gabriele Keller.
+
+In [_Haskell '17: The 10th ACM SIGPLAN Symposium on Haskell_](https://www.haskell.org/haskell-symposium/2017/), ACM, 2017.
+
+**Abstract:**
+
+Previous work has demonstrated that it is possible to generate efficient and
+highly parallel code for multicore CPUs and GPUs from combinator-based array
+languages for a range of applications. That work, however, has been limited to
+operating on flat, rectangular structures without any facilities for
+irregularity or nesting.
+
+In this paper, we show that even a limited form of nesting provides substantial
+benefits both in terms of the expressiveness of the language (increasing
+modularity and providing support for simple irregular structures) and the
+portability of the code (increasing portability across resource-constrained
+devices, such as GPUs). Specifically, we generalise Blelloch's flattening
+transformation along two lines: (1) we explicitly distinguish between definitely
+regular and potentially irregular computations; and (2) we handle
+multidimensional arrays. We demonstrate the utility of this generalisation by an
+extension of the embedded array language Accelerate to include irregular streams
+of multidimensional arrays. We discuss code generation, optimisation, and
+irregular stream scheduling as well as a range of benchmarks on both multicore
+CPUs and GPUs.
+
+ - [PDF](https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.pdf) (12 pages)
+ - [bibtex](https://github.com/AccelerateHS/acceleratehs.github.io/raw/master/papers/acc-seq2-haskell2017.bib)
+
+
 ### Type-safe Runtime Code Generation: Accelerate to LLVM
 
 Trevor L. McDonell, Manuel M. T. Chakravarty, Vinod Grover, and Ryan R. Newton.
