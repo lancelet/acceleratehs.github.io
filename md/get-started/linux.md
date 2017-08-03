@@ -85,6 +85,15 @@ CUDA toolkit available [here](https://developer.nvidia.com/cuda-downloads).
 
 ## 2. Install Accelerate
 
+The Haskell ecosystem has two tools to help with building and installing
+packages: [`cabal`](https://www.haskell.org/cabal/) (the default) which installs
+packages to a global location, and
+[`stack`](https://docs.haskellstack.org/en/stable/README/), which has a more
+project-centric focus.
+
+
+### 2.1 Using cabal
+
 We can now install the core Accelerate library:
 ```sh
 cabal install accelerate
@@ -119,6 +128,25 @@ cabal install accelerate-llvm-native
 NVIDIA GPUs:
 ```sh
 cabal install accelerate-llvm-ptx
+```
+
+### 2.2 Using stack
+
+You can use Accelerate in a stack-based workflow by including the following (or
+similar) into the `stack.yaml` file of your project:
+
+```yaml
+resolver: lts-9.0
+extra-deps:
+- 'accelerate-llvm-1.0.0.0'
+- 'accelerate-llvm-native-1.0.0.0'
+- 'accelerate-llvm-ptx-1.0.0.0'
+- 'cuda-0.7.5.3'
+- 'llvm-hs-4.0.1.0'
+- 'llvm-hs-pure-4.0.0.0'
+flags:
+  llvm-hs:
+    shared-llvm: true
 ```
 
 
