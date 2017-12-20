@@ -85,17 +85,23 @@ You can use Accelerate in a stack-based workflow by including the following (or
 similar) into the `stack.yaml` file of your project:
 
 ```yaml
-resolver: lts-9.0
-extra-deps:
-- 'accelerate-llvm-1.0.0.0'
-- 'accelerate-llvm-native-1.0.0.0'
-- 'accelerate-llvm-ptx-1.0.0.0'
-- 'cuda-0.7.5.3'
-- 'llvm-hs-4.0.1.0'
-- 'llvm-hs-pure-4.0.0.0'
+resolver: lts-10.0
 flags:
   llvm-hs:
     shared-llvm: true
+```
+
+Then add the following into the `dependencies:` section of the `package.yaml`
+file:
+
+```yaml
+dependencies:
+- accelerate-llvm
+- accelerate-llvm-native
+- accelerate-llvm-ptx
+- cuda
+- llvm-hs
+- llvm-hs-pure
 ```
 
 

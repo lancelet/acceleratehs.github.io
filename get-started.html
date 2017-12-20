@@ -124,17 +124,18 @@
 <div class="sourceCode"><pre class="sourceCode sh"><code class="sourceCode bash"><span class="ex">cabal</span> install accelerate-llvm-ptx</code></pre></div>
 <h3 id="using-stack">2.2 Using stack</h3>
 <p>You can use Accelerate in a stack-based workflow by including the following (or similar) into the <code>stack.yaml</code> file of your project:</p>
-<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">resolver:</span> lts-9.0
-<span class="fu">extra-deps:</span>
-<span class="kw">-</span> <span class="st">&#39;accelerate-llvm-1.0.0.0&#39;</span>
-<span class="kw">-</span> <span class="st">&#39;accelerate-llvm-native-1.0.0.0&#39;</span>
-<span class="kw">-</span> <span class="st">&#39;accelerate-llvm-ptx-1.0.0.0&#39;</span>
-<span class="kw">-</span> <span class="st">&#39;cuda-0.7.5.3&#39;</span>
-<span class="kw">-</span> <span class="st">&#39;llvm-hs-4.0.1.0&#39;</span>
-<span class="kw">-</span> <span class="st">&#39;llvm-hs-pure-4.0.0.0&#39;</span>
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">resolver:</span><span class="at"> lts-10.0</span>
 <span class="fu">flags:</span>
   <span class="fu">llvm-hs:</span>
-    <span class="fu">shared-llvm:</span> true</code></pre></div>
+    <span class="fu">shared-llvm:</span><span class="at"> true</span></code></pre></div>
+<p>Then add the following into the <code>dependencies:</code> section of the <code>package.yaml</code> file:</p>
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">dependencies:</span>
+<span class="kw">-</span> accelerate-llvm
+<span class="kw">-</span> accelerate-llvm-native
+<span class="kw">-</span> accelerate-llvm-ptx
+<span class="kw">-</span> cuda
+<span class="kw">-</span> llvm-hs
+<span class="kw">-</span> llvm-hs-pure</code></pre></div>
 <h2 id="run-an-accelerate-program">3. Run an Accelerate program</h2>
 <p>Copy the following content into a file called <code>Dotp.hs</code>. This simple example computes the dot product of two vectors of single-precision floating-point numbers. If you installed the GPU backend in step <a href="#install-accelerate">2</a>, you can uncomment the third line (delete the leading <code>--</code>) to enable both the CPU and GPU backends.</p>
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Array.Accelerate</span>              <span class="kw">as</span> <span class="dt">A</span>
